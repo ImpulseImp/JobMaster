@@ -1,4 +1,12 @@
-import { Zap, LucideIcon, Droplet } from 'lucide-react';
+import {
+  Zap,
+  LucideIcon,
+  Droplet,
+  HardHat,
+  LibraryBig,
+  PencilLine,
+  Waves,
+} from 'lucide-react';
 
 type DescriptionType = {
   title: string;
@@ -72,7 +80,7 @@ export const categories: Category[] = [
   },
   {
     label: 'Гидравлика',
-    icon: Droplet,
+    icon: Waves,
     href: '/plumbing',
     trigger: true,
     description: [
@@ -86,7 +94,7 @@ export const categories: Category[] = [
   },
   {
     label: 'Охрана Труда',
-    icon: Droplet,
+    icon: HardHat,
     href: '/plumbing',
     trigger: true,
     navLink: {
@@ -102,13 +110,13 @@ export const categories: Category[] = [
   },
   {
     label: 'Блог',
-    icon: Droplet,
+    icon: PencilLine,
     href: '/plumbing',
     trigger: false,
   },
   {
     label: 'Библиотека',
-    icon: Droplet,
+    icon: LibraryBig,
     href: '/library',
     trigger: false,
   },

@@ -7,7 +7,6 @@ import {
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
 import { categories } from '@/utils/categories';
-import { Zap } from 'lucide-react';
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
@@ -51,8 +50,10 @@ function NavMenu() {
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>
                     <Link href={category.href}>
-                      <Icon />
-                      {category.label}
+                      <div className='flex flex-col items-center justify-center gap-y-2'>
+                        <Icon />
+                        {category.label}
+                      </div>
                     </Link>
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
@@ -76,11 +77,7 @@ function NavMenu() {
                       )}
                       {category.description?.map((el, idx) => {
                         return (
-                          <ListItem
-                            href='/docs/installation'
-                            title={el.title}
-                            key={idx}
-                          >
+                          <ListItem href='/' title={el.title} key={idx}>
                             {el.text}
                           </ListItem>
                         );
@@ -94,10 +91,15 @@ function NavMenu() {
         ) : (
           <div key={category.label}>
             <NavigationMenu>
-              <NavigationMenuItem>
+              <NavigationMenuItem className='list-none'>
                 <Link href={category.href} legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    {category.label}
+                  <NavigationMenuLink
+                    className={`${navigationMenuTriggerStyle()} `}
+                  >
+                    <div className='flex flex-col items-center justify-center gap-y-2'>
+                      <Icon />
+                      {category.label}
+                    </div>
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
