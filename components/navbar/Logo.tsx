@@ -4,11 +4,13 @@ import Link from 'next/link';
 
 function Logo() {
   return (
-    <Button size='icon' asChild>
-      <Link href={'/'}>
-        <Activity />
-      </Link>
-    </Button>
+    <div>
+      <Button size='icon' asChild>
+        <Link href={'/'}>
+          <Activity />
+        </Link>
+      </Button>
+    </div>
   );
 }
 export default Logo;

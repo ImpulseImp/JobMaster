@@ -5,36 +5,58 @@ type Category = {
   icon: LucideIcon;
   href: string;
   description?: string[];
+  navLink?: boolean;
   trigger: boolean;
   // link: boolean;
 };
 
 export type CategoryLabel =
-  | 'electricity'
-  | 'plumbing'
-  | 'ventilation'
-  | 'hydraulics'
-  | 'labor'
-  | 'blog'
-  | 'library';
+  | 'Электрика'
+  | 'Сантехника'
+  | 'Гидравлика'
+  | 'Охрана Труда'
+  | 'Блог'
+  | 'Библиотека';
 
 export const categories: Category[] = [
   {
-    label: 'electricity',
+    label: 'Электрика',
     icon: Zap,
     href: '/electricity',
     trigger: true,
     description: ['PPR', 'Tabel', 'Manetance'],
+    navLink: true,
   },
   {
-    label: 'plumbing',
+    label: 'Сантехника',
     icon: Droplet,
     href: '/plumbing',
     trigger: true,
     description: ['water', 'kns', 'pribor ucheta'],
   },
   {
-    label: 'library',
+    label: 'Гидравлика',
+    icon: Droplet,
+    href: '/plumbing',
+    trigger: true,
+    description: ['water', 'kns', 'pribor ucheta'],
+  },
+  {
+    label: 'Охрана Труда',
+    icon: Droplet,
+    href: '/plumbing',
+    trigger: true,
+    description: ['water', 'kns', 'pribor ucheta'],
+  },
+  {
+    label: 'Блог',
+    icon: Droplet,
+    href: '/plumbing',
+    trigger: false,
+    description: ['water', 'kns', 'pribor ucheta'],
+  },
+  {
+    label: 'Библиотека',
     icon: Droplet,
     href: '/library',
     trigger: false,
