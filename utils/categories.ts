@@ -6,6 +6,7 @@ import {
   LibraryBig,
   PencilLine,
   Waves,
+  MessageCircleQuestion,
 } from 'lucide-react';
 
 type DescriptionType = {
@@ -33,7 +34,8 @@ export type CategoryLabel =
   | 'Гидравлика'
   | 'Охрана Труда'
   | 'Блог'
-  | 'Библиотека';
+  | 'Библиотека'
+  | 'Q & A';
 
 export const categories: Category[] = [
   {
@@ -156,28 +158,10 @@ export const categories: Category[] = [
     href: '/library',
     trigger: false,
   },
-  // {
-  //   label: 'ventilation',
-  //   icon: Zap,
-  //   href: '/electricity',
-  //   description: '123',
-  // },
-  // {
-  //   label: 'hydraulics',
-  //   icon: Zap,
-  //   href: '/electricity',
-  //   description: '123',
-  // },
-  // {
-  //   label: 'labor',
-  //   icon: Zap,
-  //   href: '/electricity',
-  //   description: '123',
-  // },
-  // {
-  //   label: 'blog',
-  //   icon: Zap,
-  //   href: '/electricity',
-  //   description: '123',
-  // },
+  {
+    label: 'Q & A',
+    icon: MessageCircleQuestion,
+    href: '/questions',
+    trigger: false,
+  },
 ];
