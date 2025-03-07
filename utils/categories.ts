@@ -10,7 +10,10 @@ type Category = {
   icon: LucideIcon;
   href: string;
   description?: string[];
-  navLink?: boolean;
+  navLink?: {
+    title: string;
+    text: string;
+  };
   trigger: boolean;
   content?: ContentType[];
   // link: boolean;
@@ -31,7 +34,6 @@ export const categories: Category[] = [
     href: '/electricity',
     trigger: true,
     description: ['PPR', 'Tabel', 'Manetance'],
-    navLink: true,
     content: [
       {
         title: 'Оборудование',
@@ -52,6 +54,10 @@ export const categories: Category[] = [
       {
         title: 'График Поверки Приборов Учета',
         text: 'планово предупредительные работы',
+      },
+      {
+        title: 'Калькулятор',
+        text: 'Расчет сечения проводника',
       },
     ],
   },
@@ -75,6 +81,10 @@ export const categories: Category[] = [
     icon: Droplet,
     href: '/plumbing',
     trigger: true,
+    navLink: {
+      title: 'Проверка знаний по Охране Труда',
+      text: 'пройти проверку знаний по категориям',
+    },
     description: ['water', 'kns', 'pribor ucheta'],
   },
   {

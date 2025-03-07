@@ -66,11 +66,10 @@ function NavMenu() {
                             >
                               <Zap />
                               <div className='mb-2 mt-4 text-lg font-medium'>
-                                shadcn/ui
+                                {category.navLink.title}
                               </div>
                               <p className='text-sm leading-tight text-muted-foreground'>
-                                Beautifully designed components built with Radix
-                                UI and Tailwind CSS.
+                                {category.navLink.text}
                               </p>
                             </Link>
                           </NavigationMenuLink>
@@ -87,15 +86,6 @@ function NavMenu() {
                           </ListItem>
                         );
                       })}
-                      <ListItem href='/docs/installation' title='Installation'>
-                        How to install dependencies and structure your app.
-                      </ListItem>
-                      <ListItem
-                        href='/docs/primitives/typography'
-                        title='Typography'
-                      >
-                        Styles for headings, paragraphs, lists...etc
-                      </ListItem>
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
