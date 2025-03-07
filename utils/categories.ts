@@ -65,14 +65,24 @@ export const categories: Category[] = [
     icon: Droplet,
     href: '/plumbing',
     trigger: true,
-    description: [{ title: 'оборудование', text: 'сантех.оборудование' }],
+    description: [
+      { title: 'Оборудование', text: 'сантех.оборудование' },
+      { title: 'Материалы', text: 'сантех.материалы' },
+    ],
   },
   {
     label: 'Гидравлика',
     icon: Droplet,
     href: '/plumbing',
     trigger: true,
-    // description: ['water', 'kns', 'pribor ucheta'],
+    description: [
+      { title: 'Оборудование', text: 'уравнительные платформы, пресса' },
+      { title: 'Схемы', text: 'Типовые схемы гидравлического оборудования' },
+      {
+        title: 'Журнал Ремонта',
+        text: 'выполненые работы',
+      },
+    ],
   },
   {
     label: 'Охрана Труда',
@@ -83,6 +93,12 @@ export const categories: Category[] = [
       title: 'Проверка знаний по Охране Труда',
       text: 'пройти проверку знаний по категориям',
     },
+    description: [
+      { title: 'Должностные Инструкции', text: 'инструкции по профессиям' },
+      { title: 'Должностные Инструкции', text: 'инструкции по профессиям' },
+      { title: 'Должностные Инструкции', text: 'инструкции по профессиям' },
+      { title: 'Должностные Инструкции', text: 'инструкции по профессиям' },
+    ],
   },
   {
     label: 'Блог',
