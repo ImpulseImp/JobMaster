@@ -1,6 +1,6 @@
 import { Zap, LucideIcon, Droplet } from 'lucide-react';
 
-type ContentType = {
+type DescriptionType = {
   title: string;
   text: string;
 };
@@ -9,13 +9,12 @@ type Category = {
   label: CategoryLabel;
   icon: LucideIcon;
   href: string;
-  description?: string[];
   navLink?: {
     title: string;
     text: string;
   };
   trigger: boolean;
-  content?: ContentType[];
+  description?: DescriptionType[];
   // link: boolean;
 };
 
@@ -33,8 +32,8 @@ export const categories: Category[] = [
     icon: Zap,
     href: '/electricity',
     trigger: true,
-    description: ['PPR', 'Tabel', 'Manetance'],
-    content: [
+
+    description: [
       {
         title: 'Оборудование',
         text: 'электрические щиты',
@@ -66,15 +65,14 @@ export const categories: Category[] = [
     icon: Droplet,
     href: '/plumbing',
     trigger: true,
-    description: ['water', 'kns', 'pribor ucheta'],
-    content: [{ title: 'оборудование', text: 'сантех.оборудование' }],
+    description: [{ title: 'оборудование', text: 'сантех.оборудование' }],
   },
   {
     label: 'Гидравлика',
     icon: Droplet,
     href: '/plumbing',
     trigger: true,
-    description: ['water', 'kns', 'pribor ucheta'],
+    // description: ['water', 'kns', 'pribor ucheta'],
   },
   {
     label: 'Охрана Труда',
@@ -85,14 +83,12 @@ export const categories: Category[] = [
       title: 'Проверка знаний по Охране Труда',
       text: 'пройти проверку знаний по категориям',
     },
-    description: ['water', 'kns', 'pribor ucheta'],
   },
   {
     label: 'Блог',
     icon: Droplet,
     href: '/plumbing',
     trigger: false,
-    description: ['water', 'kns', 'pribor ucheta'],
   },
   {
     label: 'Библиотека',

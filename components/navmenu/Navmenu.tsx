@@ -75,7 +75,7 @@ function NavMenu() {
                           </NavigationMenuLink>
                         </li>
                       )}
-                      {category.content?.map((el, idx) => {
+                      {category.description?.map((el, idx) => {
                         return (
                           <ListItem
                             href='/docs/installation'
