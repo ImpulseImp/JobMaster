@@ -50,7 +50,10 @@ function NavMenu() {
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>
-                    <Link href={category.href}>{category.label}</Link>
+                    <Link href={category.href}>
+                      <Icon />
+                      {category.label}
+                    </Link>
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className='grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]'>
@@ -73,6 +76,17 @@ function NavMenu() {
                           </NavigationMenuLink>
                         </li>
                       )}
+                      {category.content?.map((el, idx) => {
+                        return (
+                          <ListItem
+                            href='/docs/installation'
+                            title={el.title}
+                            key={idx}
+                          >
+                            {el.text}
+                          </ListItem>
+                        );
+                      })}
                       <ListItem href='/docs/installation' title='Installation'>
                         How to install dependencies and structure your app.
                       </ListItem>

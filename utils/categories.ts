@@ -1,5 +1,10 @@
 import { Zap, LucideIcon, Droplet } from 'lucide-react';
 
+type ContentType = {
+  title: string;
+  text: string;
+};
+
 type Category = {
   label: CategoryLabel;
   icon: LucideIcon;
@@ -7,6 +12,7 @@ type Category = {
   description?: string[];
   navLink?: boolean;
   trigger: boolean;
+  content?: ContentType[];
   // link: boolean;
 };
 
@@ -26,6 +32,28 @@ export const categories: Category[] = [
     trigger: true,
     description: ['PPR', 'Tabel', 'Manetance'],
     navLink: true,
+    content: [
+      {
+        title: 'Оборудование',
+        text: 'электрические щиты',
+      },
+      {
+        title: 'Материалы',
+        text: 'электрощитовое оборудование, светильники, СиЗ',
+      },
+      {
+        title: 'График',
+        text: 'табель рабочего времени',
+      },
+      {
+        title: 'ППР',
+        text: 'планово предупредительные работы',
+      },
+      {
+        title: 'График Поверки Приборов Учета',
+        text: 'планово предупредительные работы',
+      },
+    ],
   },
   {
     label: 'Сантехника',
@@ -33,6 +61,7 @@ export const categories: Category[] = [
     href: '/plumbing',
     trigger: true,
     description: ['water', 'kns', 'pribor ucheta'],
+    content: [{ title: 'оборудование', text: 'сантех.оборудование' }],
   },
   {
     label: 'Гидравлика',
