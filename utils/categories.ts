@@ -1,7 +1,7 @@
 import {
   Zap,
   LucideIcon,
-  Wrench,
+  Droplet,
   HardHat,
   LibraryBig,
   PencilLine,
@@ -79,7 +79,7 @@ export const categories: Category[] = [
   },
   {
     label: 'Сантехника',
-    icon: Wrench,
+    icon: Droplet,
     href: '/plumbing',
     trigger: true,
     description: [
