@@ -9,7 +9,6 @@ import Link from 'next/link';
 import { Button } from '../ui/button';
 import UserIcon from './UserIcon';
 import { links } from '@/utils/links';
-// import SignOutLink from './SignOutLink';
 import { LucideAlignLeft } from 'lucide-react';
 
 function LinksDropdown() {
