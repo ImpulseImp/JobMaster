@@ -43,7 +43,7 @@ function AccordionSection() {
         оборудования
       </h1>
 
-      <Accordion type='single' collapsible className='w-full'>
+      <Accordion type='single' collapsible className='max-w-4xl'>
         {data.map((section, idx) => {
           return (
             <SingleAccordionSection

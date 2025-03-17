@@ -33,7 +33,7 @@ export default function RootLayout({
       >
         <Providers>
           <Navbar />
-          <div className='flex justify-center items-center'>
+          <div className='hidden  sm:flex  sm:justify-center sm:items-center '>
             <NavMenu />
           </div>
           <main className='container py-10'>{children}</main>
