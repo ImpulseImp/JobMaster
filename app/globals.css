@@ -10,6 +10,9 @@ body {
   .container {
     @apply mx-auto max-w-6xl xl:max-w-7xl px-8;
   }
+  .primeTextColor {
+    @apply text-[hsl(var(--primary))];
+  }
 }
 
 @layer base {
