@@ -17,7 +17,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: 'Created By Impulse',
-  description: 'Sigma site ever existed',
+  description:
+    'Streamline your workflow and manage all processes in one place with ease. Discover tools and solutions designed for ultimate productivity',
 };
 
 export default function RootLayout({
