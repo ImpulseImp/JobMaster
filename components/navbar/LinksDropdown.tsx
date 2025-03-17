@@ -10,7 +10,7 @@ import { Button } from '../ui/button';
 import UserIcon from './UserIcon';
 import { links } from '@/utils/links';
 import { LucideAlignLeft } from 'lucide-react';
-
+import DarkMode from '@/components/navbar/DarkMode';
 function LinksDropdown() {
   return (
     <DropdownMenu>
@@ -30,6 +30,7 @@ function LinksDropdown() {
             </DropdownMenuItem>
           );
         })}
+        <DarkMode />
       </DropdownMenuContent>
     </DropdownMenu>
   );
