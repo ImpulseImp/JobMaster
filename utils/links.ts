@@ -5,12 +5,12 @@ type NavLink = {
 
 export const links: NavLink[] = [
   { href: '/', label: 'home' },
-  { href: '/electricity ', label: 'electricity' },
-  { href: '/plumbing ', label: 'plumbing' },
-  { href: '/hydraulics ', label: 'hydraulics' },
-  { href: '/labor ', label: 'labor' },
-  { href: '/blog', label: 'blog' },
-  { href: '/library', label: 'library' },
+  { href: '/electricity ', label: 'Электрика' },
+  { href: '/plumbing ', label: 'Сантехника' },
+  { href: '/hydraulics ', label: 'Гидравлика' },
+  { href: '/labor ', label: 'Охрана Труда' },
+  { href: '/blog', label: 'Блог' },
+  { href: '/library', label: 'Библиотека' },
   { href: '/questions', label: 'Q & A' },
-  { href: '/profile ', label: 'profile' },
+  { href: '/profile ', label: 'Профиль' },
 ];
