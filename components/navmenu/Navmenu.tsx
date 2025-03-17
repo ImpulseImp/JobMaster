@@ -40,7 +40,7 @@ ListItem.displayName = 'ListItem';
 
 function NavMenu() {
   return (
-    <div className='flex gap-4 items-center py-10'>
+    <div className='flex gap-4 items-center py-6'>
       {categories.map((category) => {
         const Icon = category.icon;
         return category.trigger ? (
@@ -49,7 +49,7 @@ function NavMenu() {
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>
-                    <Link href={category.href}>
+                    <Link href={category.href} className=''>
                       <div className='flex flex-col items-center justify-center gap-y-2'>
                         <Icon />
                         {category.label}
