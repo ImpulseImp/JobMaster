@@ -18,7 +18,9 @@ function LaborPage() {
           <LaborContent />
         </div>
         {/* Sidebar */}
-        <LaborTopics />
+        <div className='hidden lg:block'>
+          <LaborTopics />
+        </div>
       </div>
     </div>
   );

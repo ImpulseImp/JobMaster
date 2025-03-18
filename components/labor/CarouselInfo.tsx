@@ -23,7 +23,7 @@ function CarouselInfo() {
               <div className='p-1 '>
                 <Card>
                   <CardContent className="flex aspect-square items-center justify-center p-6 bg-[url('/images/background.jpg')] bg-no-repeat bg-cover rounded-lg">
-                    <span className='text-4xl text-center font-semibold text-muted'>
+                    <span className='text-4xl text-center font-semibold text-card-foreground'>
                       Последние события {index + 1}
                     </span>
                   </CardContent>
