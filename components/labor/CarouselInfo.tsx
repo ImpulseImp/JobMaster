@@ -9,8 +9,8 @@ import {
 
 function CarouselInfo() {
   return (
-    <div className='relative'>
-      <Carousel className='w-full max-w-sm md:max-w-xl '>
+    <div className='relative '>
+      <Carousel className='w-full  max-w-sm md:max-w-xl lg:max-w-3xl  '>
         <CarouselContent>
           {Array.from({ length: 5 }).map((_, index) => (
             <CarouselItem key={index}>
