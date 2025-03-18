@@ -10,15 +10,21 @@ import {
 function CarouselInfo() {
   return (
     <div className='relative '>
-      <Carousel className='w-full max-w-sm md:max-w-xl lg:max-w-2xl'>
+      <Carousel
+        className='w-full max-w-sm md:max-w-xl lg:max-w-2xl'
+        opts={{
+          align: 'start',
+          loop: true,
+        }}
+      >
         <CarouselContent>
           {Array.from({ length: 5 }).map((_, index) => (
             <CarouselItem key={index} className=''>
               <div className='p-1 '>
                 <Card>
-                  <CardContent className='flex aspect-square items-center justify-center p-6'>
-                    <span className='text-4xl text-center font-semibold'>
-                      Последние новости {index + 1}
+                  <CardContent className="flex aspect-square items-center justify-center p-6 bg-[url('/images/background.jpg')] bg-no-repeat bg-cover rounded-lg">
+                    <span className='text-4xl text-center font-semibold text-muted'>
+                      Последние события {index + 1}
                     </span>
                   </CardContent>
                 </Card>
