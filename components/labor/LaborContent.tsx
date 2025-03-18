@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 function LaborContent() {
   return (
-    <div className='flex flex-col max-w-3xl space-y-4 md:max-w-4xl'>
+    <div className='flex flex-col max-w-3xl space-y-4 md:max-w-7xl'>
       {/* Item 1 */}
       <div className='p-2 border-2 border-gray-500 w-full space-y-2'>
         <div className='bg-red-200  '>

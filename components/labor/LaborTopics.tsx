@@ -1,6 +1,6 @@
 function LaborTopics() {
   return (
-    <div className='flex flex-col max-w-sm pb-2  p-4'>
+    <div className='flex flex-col max-w-sm pb-2 p-4  '>
       {/* Item 1 */}
       <div className='border-b-2 border-gray-300'>
         <p>element 1</p>
@@ -61,9 +61,12 @@ function LaborTopics() {
           maxime.
         </p>
       </div>
-      {/* Item 6 */}
+
+      {/* rest */}
+
+      {/* Item 4 */}
       <div className='border-b-2 border-gray-300'>
-        <p>element 6</p>
+        <p>element 4</p>
         <p>img</p>
         <h3>Пройти экзамен</h3>
         <p className='text-muted-foreground'>
@@ -73,6 +76,19 @@ function LaborTopics() {
           maxime.
         </p>
       </div>
+      {/* Item 5 */}
+      <div className='border-b-2 border-gray-300'>
+        <p>element 5</p>
+        <p>img</p>
+        <h3>Пройти экзамен</h3>
+        <p className='text-muted-foreground'>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla eos
+          obcaecati ut magnam nam corrupti perspiciatis quis velit vitae
+          consequatur minima sit quo pariatur amet eaque ipsa, quas, nemo
+          maxime.
+        </p>
+      </div>
+      {/* Item 6 */}
     </div>
   );
 }
