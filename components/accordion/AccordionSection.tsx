@@ -38,9 +38,8 @@ const data: SectionType[] = [
 function AccordionSection() {
   return (
     <div>
-      <h1 className='text-2xl font-bold mb-4 '>
-        Часто задаваемые вопросы по эксплуатации электротехнического
-        оборудования
+      <h1 className='text-2xl font-bold mb-4'>
+        Часто задаваемые вопросы по эксплуатации гидарвлического оборудования
       </h1>
 
       <Accordion type='single' collapsible className='max-w-4xl'>
