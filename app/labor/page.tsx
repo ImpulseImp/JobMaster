@@ -4,7 +4,7 @@ import LaborTopics from '@/components/labor/LaborTopics';
 
 function LaborPage() {
   return (
-    <div className='container '>
+    <div className=' '>
       {/* Carousel and sidebar Container*/}
       <div className='flex  pb-2 flex-col sm:flex-row justify-center items-center space-y-0 sm:justify-around sm:space-y-0 sm:items-start sm:space-x-4'>
         {/* border */}
