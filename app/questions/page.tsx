@@ -1,18 +1,29 @@
 import AccordionSection from '@/components/accordion/AccordionSection';
-
+//space-y-4 max-w-xl md:max-w-72 text-gray-700 leading-relaxed
 function QuestionsPage() {
   return (
     <div>
       <div className='flex flex-col items-center md:flex-row gap-4 md:justify-between min-h-svh md:items-start'>
-        <div className='space-y-2 max-w-xl md:max-w-72'>
-          <button className='border-2  border-gray-200 p-2 rounded-lg shadow-md transition-colors hover:bg-accent text-left text-[hsl(var(--primary))]'>
+        <div className='space-y-2 max-w-xl md:max-w-80 leading-relaxed md:leading-normal'>
+          <button
+            aria-label='Часто задаваемые вопросы по эксплуатации электротехнического оборудования'
+            className='border-2  border-gray-200  p-3 md:p-4 lg:p-5 rounded-lg shadow-md transition-colors hover:bg-accent text-center md:text-left text-[hsl(var(--primary))]'
+          >
             Часто задаваемые вопросы по эесплуатации электротехнического
             оборудования
           </button>
-          <button className='border-2 border-gray-200 p-2 rounded-lg shadow-md transition-colors hover:bg-accent text-left '>
-            Часто задаваемые вопросы по эксплуатации гидарвличесого оборудования
+          <button
+            aria-label='Часто задаваемые вопросы по эксплуатации гидравлического оборудования'
+            className='border-2 p-3 md:p-4 lg:p-5 border-gray-200  rounded-lg shadow-md transition-colors hover:bg-accent text-center md:text-left '
+          >
+            Часто задаваемые вопросы по эксплуатации гидравлического
+            оборудования
           </button>
-          <button className='border-2 border-gray-200 p-2 rounded-lg shadow-md transition-colors hover:bg-accent   text-left'>
+          <button
+            aria-label='Часто задаваемые вопросы по эксплуатации теплотехнического
+            оборудования'
+            className=' border-2 p-3 md:p-4 lg:p-5 border-gray-200  rounded-lg shadow-md hover:bg-accent   text-center md:text-left transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent'
+          >
             Часто задаваемые вопросы по эксплуатации теплотехнического
             оборудования
           </button>
