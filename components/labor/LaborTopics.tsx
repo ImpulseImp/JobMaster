@@ -1,6 +1,6 @@
 function LaborTopics() {
   return (
-    <div className='flex flex-col max-w-sm pb-2 border-l-2 border-gray-400 pl-2'>
+    <div className='flex flex-col max-w-sm pb-2 border-l-2 border-gray-400 p-4'>
       {/* Item 1 */}
       <div className='border-b-2 border-gray-300'>
         <p>element 1</p>
