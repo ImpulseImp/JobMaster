@@ -11,7 +11,7 @@ function CarouselInfo() {
   return (
     <div className='relative '>
       <Carousel
-        className='w-full max-w-sm md:max-w-xl lg:max-w-2xl'
+        className='w-full max-w-sm md:max-w-xl lg:max-w-lg'
         opts={{
           align: 'start',
           loop: true,

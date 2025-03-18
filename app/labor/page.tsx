@@ -11,7 +11,7 @@ function LaborPage() {
         <div></div>
         {/* Carousel */}
         <div className='flex flex-col items-start justify-center space-y-4  '>
-          <div className='border-b-2 border-gray-400 pb-4'>
+          <div className='border-b-2 border-gray-400 pb-4 self-center'>
             <CarouselInfo />
           </div>
           {/* Content */}
