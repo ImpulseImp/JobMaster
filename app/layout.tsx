@@ -36,7 +36,7 @@ export default function RootLayout({
           <div className='hidden  sm:flex  sm:justify-center sm:items-center '>
             <NavMenu />
           </div>
-          <main className='container py-10'>{children}</main>
+          <main className='container py-4 md:py-6'>{children}</main>
         </Providers>
       </body>
     </html>
