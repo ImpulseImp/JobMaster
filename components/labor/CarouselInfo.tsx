@@ -6,10 +6,12 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import { CarouselDataType } from '@/utils/types';
+import { v4 as uuidv4 } from 'uuid';
 
-function CarouselInfo() {
+function CarouselInfo({ carouselData }: { carouselData: CarouselDataType[] }) {
   return (
-    <div className='relative '>
+    <div className='relative'>
       <Carousel
         className='w-full max-w-sm md:max-w-xl lg:max-w-lg'
         opts={{
@@ -17,14 +19,23 @@ function CarouselInfo() {
           loop: true,
         }}
       >
+        {/*  className="flex aspect-square items-center justify-center p-6 bg-no-repeat bg-cover rounded-lg"
+                    style={{
+                      backgroundImage: `url(${item.url || '/images/background.jpg'})`,
+                    }} */}
         <CarouselContent>
-          {Array.from({ length: 5 }).map((_, index) => (
-            <CarouselItem key={index} className=''>
-              <div className='p-1 '>
+          {carouselData.map((item) => (
+            <CarouselItem key={uuidv4()} className=''>
+              <div className='p-1'>
                 <Card>
-                  <CardContent className="flex aspect-square items-center justify-center p-6 bg-[url('/images/background.jpg')] bg-no-repeat bg-cover rounded-lg">
+                  <CardContent
+                    className='flex aspect-square items-center justify-center p-6 bg-no-repeat bg-cover rounded-lg'
+                    style={{
+                      backgroundImage: `url(${item.url})`,
+                    }}
+                  >
                     <span className='text-4xl text-center font-semibold text-card-foreground'>
-                      Последние события {index + 1}
+                      {item.text}
                     </span>
                   </CardContent>
                 </Card>

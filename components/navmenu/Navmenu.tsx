@@ -11,7 +11,7 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 import Link from 'next/link';
-
+import { v4 as uuidv4 } from 'uuid';
 const ListItem = React.forwardRef<
   React.ElementRef<'a'>,
   React.ComponentPropsWithoutRef<'a'>
@@ -44,7 +44,7 @@ function NavMenu() {
       {categories.map((category) => {
         const Icon = category.icon;
         return category.trigger ? (
-          <div>
+          <div key={uuidv4()}>
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
@@ -75,15 +75,13 @@ function NavMenu() {
                           </NavigationMenuLink>
                         </li>
                       )}
-                      {category.description?.map(
-                        ({ title, text, href }, idx) => {
-                          return (
-                            <ListItem href={href} title={title} key={idx}>
-                              {text}
-                            </ListItem>
-                          );
-                        }
-                      )}
+                      {category.description?.map(({ title, text, href }) => {
+                        return (
+                          <ListItem href={href} title={title} key={uuidv4()}>
+                            {text}
+                          </ListItem>
+                        );
+                      })}
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
@@ -91,7 +89,7 @@ function NavMenu() {
             </NavigationMenu>
           </div>
         ) : (
-          <div key={category.label}>
+          <div key={uuidv4()}>
             <NavigationMenu>
               <NavigationMenuItem className='list-none'>
                 <Link href={category.href} legacyBehavior passHref>

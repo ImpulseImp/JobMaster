@@ -1,4 +1,18 @@
+import TopicContainer from '@/components/topics-content/TopicContainer';
+import {
+  carouselElectricData,
+  electricContentData,
+  electricTopics,
+} from '@/utils/topics';
 function ElectricityPage() {
-  return <div>ElectricityPage</div>;
+  return (
+    <div>
+      <TopicContainer
+        navTopics={electricTopics}
+        carouselData={carouselElectricData}
+        contentTopicsData={electricContentData}
+      />
+    </div>
+  );
 }
 export default ElectricityPage;
