@@ -4,6 +4,7 @@ import './globals.css';
 import Navbar from '@/components/navbar/Navbar';
 import Providers from './providers';
 import NavMenu from '@/components/navmenu/Navmenu';
+import Footer from '@/components/footer/Footer';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -37,6 +38,9 @@ export default function RootLayout({
             <NavMenu />
           </div>
           <main className='container py-4 md:py-6'>{children}</main>
+          <footer className='container py-4 md:py-6'>
+            <Footer />
+          </footer>
         </Providers>
       </body>
     </html>

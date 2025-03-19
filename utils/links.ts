@@ -12,5 +12,5 @@ export const links: NavLink[] = [
   { href: '/blog', label: 'Блог' },
   { href: '/library', label: 'Библиотека' },
   { href: '/questions', label: 'Q & A' },
-  { href: '/profile ', label: 'Профиль' },
+  { href: '/ ', label: 'Профиль' },
 ];
