@@ -5,6 +5,15 @@ import Navbar from '@/components/navbar/Navbar';
 import Providers from './providers';
 import NavMenu from '@/components/navmenu/Navmenu';
 import Footer from '@/components/footer/Footer';
+import {
+  ClerkProvider,
+  SignInButton,
+  SignUpButton,
+  SignedOut,
+  SignOutButton,
+  SignedIn,
+} from '@clerk/nextjs';
+import { Button } from '@/components/ui/button';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -28,21 +37,38 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Providers>
-          <Navbar />
-          <div className='hidden  sm:flex  sm:justify-center sm:items-center '>
-            <NavMenu />
-          </div>
-          <main className='container py-4 md:py-6'>{children}</main>
-          <footer className='container py-4 md:py-6'>
-            <Footer />
-          </footer>
-        </Providers>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang='en' suppressHydrationWarning>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <Providers>
+            <header className='container flex justify-end space-x-4   py-4 md:py-6'>
+              <SignedOut>
+                <Button asChild>
+                  <SignInButton />
+                </Button>
+                <Button asChild>
+                  <SignUpButton />
+                </Button>
+              </SignedOut>
+              <SignedIn>
+                <Button asChild>
+                  <SignOutButton />
+                </Button>
+              </SignedIn>
+            </header>
+            <Navbar />
+            <div className='hidden  sm:flex  sm:justify-center sm:items-center '>
+              <NavMenu />
+            </div>
+            <main className='container py-4 md:py-6'>{children}</main>
+            <footer className='container py-4 md:py-6'>
+              <Footer />
+            </footer>
+          </Providers>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

@@ -1,4 +1,10 @@
+import { SignedIn, UserButton } from '@clerk/nextjs';
+
 function UserIcon() {
-  return <div>UserIcon</div>;
+  return (
+    <SignedIn>
+      <UserButton />
+    </SignedIn>
+  );
 }
 export default UserIcon;
