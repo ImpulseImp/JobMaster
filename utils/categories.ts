@@ -144,7 +144,7 @@ export const categories: Category[] = [
     navLink: {
       title: 'Проверка знаний по Охране Труда',
       text: 'пройти проверку знаний по категориям',
-      href: '/labor/',
+      href: '/labor/quiz',
     },
     description: [
       {

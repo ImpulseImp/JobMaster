@@ -43,12 +43,8 @@ export default function RootLayout({
           <Providers>
             <header className='container flex justify-end space-x-4  pt-2 '>
               <SignedOut>
-                <Button asChild>
-                  <SignInButton />
-                </Button>
-                <Button asChild>
-                  <SignUpButton />
-                </Button>
+                <SignInButton />
+                <SignUpButton />
               </SignedOut>
             </header>
             <Navbar />
