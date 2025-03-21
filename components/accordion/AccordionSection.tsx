@@ -1,6 +1,6 @@
 import { Accordion } from '@/components/ui/accordion';
 import SingleAccordionSection from './SingleAccordionSection';
-// import { SectionType } from '@/utils/types';
+
 import { v4 as uuidv4 } from 'uuid';
 type AccordionSectionProps = {
   section: {

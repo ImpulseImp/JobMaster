@@ -1,8 +1,8 @@
-// export type SectionType = {
-//   question: string;
-//   answer: string;
-//   value: string;
-// };
+export type SectionType = {
+  question: string;
+  answer: string;
+  value: string;
+};
 
 export type SideTopicsType = {
   title: string;
