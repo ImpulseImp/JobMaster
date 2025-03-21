@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 function ModeToggle() {
   const { setTheme } = useTheme();
   return (
-    <div className='flex justify-between items-center px-2'>
+    <div className='flex justify-between items-center px-2 '>
       <h3 className='text-sm leading-5'>Тема</h3>
       <div>
         <Button variant='outline' size='icon' onClick={() => setTheme('light')}>

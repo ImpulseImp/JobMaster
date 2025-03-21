@@ -10,8 +10,6 @@ import {
   SignInButton,
   SignUpButton,
   SignedOut,
-  SignOutButton,
-  SignedIn,
 } from '@clerk/nextjs';
 import { Button } from '@/components/ui/button';
 
@@ -43,7 +41,7 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <Providers>
-            <header className='container flex justify-end space-x-4   py-4 md:py-6'>
+            <header className='container flex justify-end space-x-4  pt-2 '>
               <SignedOut>
                 <Button asChild>
                   <SignInButton />
@@ -52,11 +50,6 @@ export default function RootLayout({
                   <SignUpButton />
                 </Button>
               </SignedOut>
-              <SignedIn>
-                <Button asChild>
-                  <SignOutButton />
-                </Button>
-              </SignedIn>
             </header>
             <Navbar />
             <div className='hidden  sm:flex  sm:justify-center sm:items-center '>

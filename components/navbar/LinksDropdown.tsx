@@ -5,7 +5,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-
+import { SignOutButton, SignedIn } from '@clerk/nextjs';
 import Link from 'next/link';
 import { Button } from '../ui/button';
 import UserIcon from './UserIcon';
@@ -13,6 +13,9 @@ import { links } from '@/utils/links';
 import { LucideAlignLeft } from 'lucide-react';
 import DarkMode from '@/components/navbar/DarkMode';
 import { useState } from 'react';
+
+import { LogOut } from 'lucide-react';
+
 function LinksDropdown() {
   const [open, setOpen] = useState(false);
   return (
@@ -40,6 +43,13 @@ function LinksDropdown() {
           );
         })}
         <DarkMode />
+
+        <SignedIn>
+          <div className='relative flex justify-between mt-2  cursor-default select-none  rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground hover:bg-accent'>
+            <SignOutButton />
+            <LogOut className='w-4 h-4' />
+          </div>
+        </SignedIn>
       </DropdownMenuContent>
     </DropdownMenu>
   );
