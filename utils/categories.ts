@@ -3,7 +3,7 @@ import {
   LucideIcon,
   Wrench,
   HardHat,
-  LibraryBig,
+  MonitorCog,
   PencilLine,
   Waves,
   MessageCircleQuestion,
@@ -34,10 +34,28 @@ export type CategoryLabel =
   | 'Гидравлика'
   | 'Охрана Труда'
   | 'Блог'
-  | 'Библиотека'
+  | 'Workspace'
   | 'Q & A';
 
 export const categories: Category[] = [
+  {
+    label: 'Workspace',
+    icon: MonitorCog,
+    href: '/library',
+    trigger: true,
+    description: [
+      {
+        title: 'Рабочее место',
+        text: 'панель задач',
+        href: '/',
+      },
+      {
+        title: 'Библиотека',
+        text: 'документация, каталоги и т.д.',
+        href: '/library',
+      },
+    ],
+  },
   {
     label: 'Электрика',
     icon: Zap,
@@ -152,12 +170,7 @@ export const categories: Category[] = [
     href: '/blog',
     trigger: false,
   },
-  {
-    label: 'Библиотека',
-    icon: LibraryBig,
-    href: '/library',
-    trigger: false,
-  },
+
   {
     label: 'Q & A',
     icon: MessageCircleQuestion,
