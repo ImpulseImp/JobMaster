@@ -11,7 +11,6 @@ import {
   SignUpButton,
   SignedOut,
 } from '@clerk/nextjs';
-import { Button } from '@/components/ui/button';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
