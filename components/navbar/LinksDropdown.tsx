@@ -45,7 +45,7 @@ function LinksDropdown() {
         <DarkMode />
 
         <SignedIn>
-          <div className='cursor-pointer relative flex justify-between mt-2  cursor-default select-none  rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground hover:bg-accent'>
+          <div className='cursor-pointer relative flex justify-between mt-2 select-none  rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground hover:bg-accent'>
             <SignOutButton />
             <LogOut className='w-4 h-4' />
           </div>
