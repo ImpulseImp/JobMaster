@@ -3,108 +3,128 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  // Define seed data
+  // Define seed data in Russian
   const seedData = [
     {
-      name: 'Electrical',
-      topics: [
+      name: 'Электричество',
+      quizzes: [
         {
-          name: 'Basic Circuits',
-          quizzes: [
+          title: 'Основы электричества',
+          questions: [
             {
-              title: 'Simple Circuit Quiz',
-              questions: [
-                {
-                  text: 'What is the unit of electrical resistance?',
-                  options: ['Ohm', 'Volt', 'Ampere', 'Watt'],
-                  answer: 'Ohm',
-                },
-                {
-                  text: 'What does a capacitor store?',
-                  options: ['Energy', 'Voltage', 'Current', 'Resistance'],
-                  answer: 'Energy',
-                },
+              text: 'Что описывает закон Ома?',
+              options: [
+                { text: 'Ток = Напряжение x Сопротивление', isCorrect: false },
+                { text: 'Сопротивление = Ток / Напряжение', isCorrect: false },
+                { text: 'Напряжение = Ток x Сопротивление', isCorrect: true },
+                { text: 'Ток = Напряжение / Сопротивление', isCorrect: false },
               ],
+              answer: 'Напряжение = Ток x Сопротивление',
+            },
+            {
+              text: 'Какая единица измерения мощности?',
+              options: [
+                { text: 'Ампер', isCorrect: false },
+                { text: 'Ватт', isCorrect: true },
+                { text: 'Ом', isCorrect: false },
+                { text: 'Вольт', isCorrect: false },
+              ],
+              answer: 'Ватт',
             },
           ],
         },
         {
-          name: 'Power Systems',
-          quizzes: [
+          title: 'Сложные электрические цепи',
+          questions: [
             {
-              title: 'Power Systems Fundamentals',
-              questions: [
-                {
-                  text: 'What is the standard voltage for household electrical outlets?',
-                  options: ['120V', '240V', '12V', '110V'],
-                  answer: '120V',
-                },
-                {
-                  text: 'What does a transformer primarily do?',
-                  options: [
-                    'Change voltage',
-                    'Store energy',
-                    'Convert AC to DC',
-                    'Measure current',
-                  ],
-                  answer: 'Change voltage',
-                },
+              text: 'Что накапливает конденсатор?',
+              options: [
+                { text: 'Тепловую энергию', isCorrect: false },
+                { text: 'Электрическую энергию', isCorrect: true },
+                { text: 'Механическую энергию', isCorrect: false },
+                { text: 'Химическую энергию', isCorrect: false },
               ],
+              answer: 'Электрическую энергию',
+            },
+            {
+              text: 'Какая единица измерения индуктивности?',
+              options: [
+                { text: 'Фарад', isCorrect: false },
+                { text: 'Генри', isCorrect: true },
+                { text: 'Ом', isCorrect: false },
+                { text: 'Ватт', isCorrect: false },
+              ],
+              answer: 'Генри',
             },
           ],
         },
       ],
     },
     {
-      name: 'Hydraulics',
-      topics: [
+      name: 'Гидравлика',
+      quizzes: [
         {
-          name: 'Fluid Mechanics',
-          quizzes: [
+          title: 'Основы гидравлики',
+          questions: [
             {
-              title: 'Fluid Dynamics Quiz',
-              questions: [
-                {
-                  text: 'What is the SI unit of viscosity?',
-                  options: ['Pascal-second', 'Newton-meter', 'Joule', 'Watt'],
-                  answer: 'Pascal-second',
-                },
-                {
-                  text: "Bernoulli's principle relates to which property of a fluid?",
-                  options: ['Pressure', 'Viscosity', 'Density', 'Temperature'],
-                  answer: 'Pressure',
-                },
+              text: 'Какой закон лежит в основе гидравлических систем?',
+              options: [
+                { text: 'Закон Архимеда', isCorrect: false },
+                { text: 'Закон Паскаля', isCorrect: true },
+                { text: 'Закон Бернулли', isCorrect: false },
+                { text: 'Закон сохранения массы', isCorrect: false },
               ],
+              answer: 'Закон Паскаля',
+            },
+            {
+              text: 'Какая единица измеряет вязкость в СИ?',
+              options: [
+                { text: 'Ньютон-секунда', isCorrect: false },
+                { text: 'Паскаль-секунда', isCorrect: true },
+                { text: 'Ватт', isCorrect: false },
+                { text: 'Ом', isCorrect: false },
+              ],
+              answer: 'Паскаль-секунда',
             },
           ],
         },
         {
-          name: 'Hydraulic Pumps',
-          quizzes: [
+          title: 'Гидравлические системы',
+          questions: [
             {
-              title: 'Pump Basics Quiz',
-              questions: [
+              text: 'Что делает гидравлический аккумулятор?',
+              options: [
+                { text: 'Регулирует давление', isCorrect: false },
                 {
-                  text: 'What is the purpose of a hydraulic pump?',
-                  options: [
-                    'Generate flow',
-                    'Increase pressure',
-                    'Store fluid',
-                    'Control temperature',
-                  ],
-                  answer: 'Generate flow',
+                  text: 'Хранит энергию в гидравлической системе',
+                  isCorrect: true,
+                },
+                { text: 'Измеряет скорость потока', isCorrect: false },
+                { text: 'Повышает температуру жидкости', isCorrect: false },
+              ],
+              answer: 'Хранит энергию в гидравлической системе',
+            },
+            {
+              text: 'Какая формула описывает уравнение непрерывности?',
+              options: [
+                {
+                  text: 'Скорость потока увеличивается в широких трубах',
+                  isCorrect: false,
                 },
                 {
-                  text: 'Which type of pump is most commonly used in hydraulic systems?',
-                  options: [
-                    'Centrifugal pump',
-                    'Gear pump',
-                    'Vacuum pump',
-                    'Diaphragm pump',
-                  ],
-                  answer: 'Gear pump',
+                  text: 'Поток остается постоянным во всех точках',
+                  isCorrect: true,
+                },
+                {
+                  text: 'Давление возрастает при уменьшении диаметра',
+                  isCorrect: false,
+                },
+                {
+                  text: 'Скорость жидкости пропорциональна давлению',
+                  isCorrect: false,
                 },
               ],
+              answer: 'Поток остается постоянным во всех точках',
             },
           ],
         },
@@ -114,21 +134,20 @@ async function main() {
 
   // Insert data into the database
   for (const section of seedData) {
-    await prisma.quizSection.create({
+    await prisma.quizCategory.create({
       data: {
-        name: section.name,
-        topics: {
-          create: section.topics.map((topic) => ({
-            name: topic.name,
-            quizzes: {
-              create: topic.quizzes.map((quiz) => ({
-                title: quiz.title,
-                questions: {
-                  create: quiz.questions.map((question) => ({
-                    text: question.text,
-                    options: question.options,
-                    answer: question.answer,
-                  })),
+        title: section.name,
+        description: `Викторины, связанные с темой: ${section.name}.`,
+        quizzes: {
+          create: section.quizzes.map((quiz) => ({
+            title: quiz.title,
+            description: `${quiz.title} описание.`,
+            questions: {
+              create: quiz.questions.map((question) => ({
+                text: question.text,
+                answer: question.answer,
+                options: {
+                  create: question.options,
                 },
               })),
             },
@@ -138,7 +157,7 @@ async function main() {
     });
   }
 
-  console.log('Database seeded successfully!');
+  console.log('База данных успешно заполнена!');
 }
 
 // Execute the seed script
