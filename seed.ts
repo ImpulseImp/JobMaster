@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  // Define seed data in Russian
+  // Define seed data in Russian with explanations
   const seedData = [
     {
       name: 'Электричество',
@@ -20,6 +20,8 @@ async function main() {
                 { text: 'Ток = Напряжение / Сопротивление', isCorrect: false },
               ],
               answer: 'Напряжение = Ток x Сопротивление',
+              explanation:
+                'Закон Ома гласит, что напряжение пропорционально произведению тока и сопротивления.',
             },
             {
               text: 'Какая единица измерения мощности?',
@@ -30,6 +32,8 @@ async function main() {
                 { text: 'Вольт', isCorrect: false },
               ],
               answer: 'Ватт',
+              explanation:
+                'Мощность измеряется в ваттах, что отражает скорость потребления или передачи энергии.',
             },
           ],
         },
@@ -45,6 +49,8 @@ async function main() {
                 { text: 'Химическую энергию', isCorrect: false },
               ],
               answer: 'Электрическую энергию',
+              explanation:
+                'Конденсаторы накапливают электрическую энергию в виде электрического поля.',
             },
             {
               text: 'Какая единица измерения индуктивности?',
@@ -55,6 +61,8 @@ async function main() {
                 { text: 'Ватт', isCorrect: false },
               ],
               answer: 'Генри',
+              explanation:
+                'Индуктивность измеряется в генри, что описывает способность катушки накапливать магнитную энергию.',
             },
           ],
         },
@@ -75,6 +83,8 @@ async function main() {
                 { text: 'Закон сохранения массы', isCorrect: false },
               ],
               answer: 'Закон Паскаля',
+              explanation:
+                'Закон Паскаля утверждает, что давление в жидкости передается одинаково во всех направлениях.',
             },
             {
               text: 'Какая единица измеряет вязкость в СИ?',
@@ -85,6 +95,8 @@ async function main() {
                 { text: 'Ом', isCorrect: false },
               ],
               answer: 'Паскаль-секунда',
+              explanation:
+                'Вязкость измеряется в паскаль-секундах, что описывает сопротивление жидкости движению.',
             },
           ],
         },
@@ -103,6 +115,8 @@ async function main() {
                 { text: 'Повышает температуру жидкости', isCorrect: false },
               ],
               answer: 'Хранит энергию в гидравлической системе',
+              explanation:
+                'Гидравлический аккумулятор хранит энергию для поддержания давления в системе.',
             },
             {
               text: 'Какая формула описывает уравнение непрерывности?',
@@ -125,6 +139,8 @@ async function main() {
                 },
               ],
               answer: 'Поток остается постоянным во всех точках',
+              explanation:
+                'Уравнение непрерывности утверждает, что объемный поток остается постоянным через каждое сечение трубы.',
             },
           ],
         },
@@ -146,6 +162,7 @@ async function main() {
               create: quiz.questions.map((question) => ({
                 text: question.text,
                 answer: question.answer,
+                explanation: question.explanation,
                 options: {
                   create: question.options,
                 },
