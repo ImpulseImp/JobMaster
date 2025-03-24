@@ -12,8 +12,57 @@ generator client {
 }
 
 model Cable {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
   name          String
   quantity      Int
   catalogNumber String
+}
+
+model QuizSection {
+  id     String      @id @default(auto()) @map("_id") @db.ObjectId
+  name   String
+  topics QuizTopic[]
+}
+
+model QuizTopic {
+  id        String      @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  sectionId String      @db.ObjectId
+  section   QuizSection @relation(fields: [sectionId], references: [id])
+  quizzes   TopicQuiz[]
+}
+
+model TopicQuiz {
+  id         String         @id @default(auto()) @map("_id") @db.ObjectId
+  title      String
+  topicId    String         @db.ObjectId
+  topic      QuizTopic      @relation(fields: [topicId], references: [id])
+  questions  QuizQuestion[]
+  QuizResult QuizResult[]
+}
+
+model QuizQuestion {
+  id      String    @id @default(auto()) @map("_id") @db.ObjectId
+  text    String
+  options String[]
+  answer  String
+  quizId  String    @db.ObjectId
+  quiz    TopicQuiz @relation(fields: [quizId], references: [id])
+}
+
+model QuizResult {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String    @db.ObjectId
+  quizId     String    @db.ObjectId
+  score      Int
+  passedDate DateTime
+  user       User      @relation(fields: [userId], references: [id])
+  quiz       TopicQuiz @relation(fields: [quizId], references: [id])
+}
+
+model User {
+  id      String       @id @default(auto()) @map("_id") @db.ObjectId // MongoDB ObjectId
+  clerkId String       @unique // Clerk-generated user ID
+  email   String       @unique
+  results QuizResult[]
 }
