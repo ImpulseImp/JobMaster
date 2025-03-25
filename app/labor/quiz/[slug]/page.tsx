@@ -1,10 +1,10 @@
 import prisma from '@/utils/db';
 
-interface QuizPageProps {
+export default async function QuizPage({
+  params,
+}: {
   params: { slug: string };
-}
-
-export default async function QuizPage({ params }: QuizPageProps) {
+}) {
   const { slug } = params;
 
   // Query the quiz using its unique slug
@@ -48,8 +48,8 @@ export default async function QuizPage({ params }: QuizPageProps) {
           </div>
         ))}
         {/* <button
-          type='submit'
-          className='block mx-auto mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600'
+          type="submit"
+          className="block mx-auto mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
         >
           Отправить ответы
         </button> */}
