@@ -5,7 +5,8 @@ export default async function QuizPage({
 }: {
   params: { slug: string };
 }) {
-  const { slug } = params;
+  console.log(params);
+  const { slug } = await params;
 
   // Query the quiz using its unique slug
   const quiz = await prisma.quiz.findFirst({
