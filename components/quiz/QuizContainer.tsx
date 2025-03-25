@@ -19,7 +19,7 @@ function QuizContainer({ quizCategories }: { quizCategories: QuizCategory[] }) {
     string | undefined
   >();
   const [quizzes, setQuizzes] = useState<Quiz[] | null>(null);
-
+  console.log(selectedCategory);
   const handleCategoryChange = async (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
