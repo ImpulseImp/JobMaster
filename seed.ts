@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import slugify from 'slugify'; // Install using: npm install slugify
 
 const prisma = new PrismaClient();
 
@@ -157,6 +158,7 @@ async function main() {
         quizzes: {
           create: section.quizzes.map((quiz) => ({
             title: quiz.title,
+            slug: slugify(quiz.title, { lower: true, strict: true }), // Generate slug from the quiz title
             description: `${quiz.title} описание.`,
             questions: {
               create: quiz.questions.map((question) => ({

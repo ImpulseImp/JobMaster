@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var client_1 = require("@prisma/client");
+var slugify_1 = require("slugify"); // Install using: npm install slugify
 var prisma = new client_1.PrismaClient();
 function main() {
     return __awaiter(this, void 0, void 0, function () {
@@ -191,6 +192,7 @@ function main() {
                                 quizzes: {
                                     create: section.quizzes.map(function (quiz) { return ({
                                         title: quiz.title,
+                                        slug: (0, slugify_1.default)(quiz.title, { lower: true, strict: true }), // Generate slug from the quiz title
                                         description: "".concat(quiz.title, " \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435."),
                                         questions: {
                                             create: quiz.questions.map(function (question) { return ({

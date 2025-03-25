@@ -1,16 +1,18 @@
 import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
+// Ensuring Prisma Client as a singleton
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined;
+};
 
-async function main() {
-  // ... you will write your Prisma Client queries here
+export const prisma =
+  globalForPrisma.prisma ??
+  new PrismaClient({
+    log: ['query', 'info', 'warn', 'error'], // Optional: Add logging for better debugging
+  });
+
+if (process.env.NODE_ENV !== 'production') {
+  globalForPrisma.prisma = prisma; // Attach to `globalThis` for reuse in development
 }
 
-main()
-  .catch(async (e) => {
-    console.error(e);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+export default prisma;
