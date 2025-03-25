@@ -7,14 +7,13 @@ const fetchQuizCategories = async function () {
   const categories = await prisma.quizCategory.findMany({
     select: { id: true, title: true, description: true }, // Include description
   });
-  console.log(categories);
 
   return categories;
 };
 
 async function QuizPage() {
   const quizCategories = await fetchQuizCategories();
-  console.log(quizCategories);
+
   if (!quizCategories || quizCategories.length === 0) {
     return <p>No quiz categories available.</p>;
   }

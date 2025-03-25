@@ -15,7 +15,7 @@ export async function GET(req: Request) {
   try {
     const quizzes = await prisma.quiz.findMany({
       where: { categoryId },
-      select: { id: true, title: true },
+      select: { id: true, title: true, slug: true },
     });
 
     return NextResponse.json({ success: true, quizzes });

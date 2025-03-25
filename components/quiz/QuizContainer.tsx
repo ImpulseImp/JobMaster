@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { QuizCategory } from '@prisma/client';
 import { Button } from '../ui/button';
-import slugify from 'slugify';
 import { useRouter } from 'next/navigation';
 
 type Quiz = {
@@ -14,12 +13,11 @@ type Quiz = {
 
 function QuizContainer({ quizCategories }: { quizCategories: QuizCategory[] }) {
   const router = useRouter();
-
   const [selectedCategory, setSelectedCategory] = useState<
     string | undefined
   >();
   const [quizzes, setQuizzes] = useState<Quiz[] | null>(null);
-  console.log(selectedCategory);
+
   const handleCategoryChange = async (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
@@ -31,14 +29,10 @@ function QuizContainer({ quizCategories }: { quizCategories: QuizCategory[] }) {
       const response = await fetch(`/api/quizzes?categoryId=${categoryId}`);
       const data = await response.json();
 
-      // Add slug to each quiz
-      const quizzesWithSlugs = data.quizzes.map((quiz: Quiz) => ({
-        ...quiz,
-        slug: slugify(quiz.title, { lower: true, strict: true }),
-      }));
-      setQuizzes(quizzesWithSlugs);
+      setQuizzes(data.quizzes);
     } catch (error) {
       console.error('Error fetching quizzes:', error);
+      console.log(selectedCategory);
       setQuizzes(null);
     }
   };
