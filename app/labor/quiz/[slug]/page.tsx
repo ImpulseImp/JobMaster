@@ -3,14 +3,13 @@ import prisma from '@/utils/db';
 export default async function QuizPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  console.log(params);
-  const { slug } = await params;
+  const { slug } = await params; // Await params here
 
   // Query the quiz using its unique slug
   const quiz = await prisma.quiz.findFirst({
-    where: { slug: slug }, // Directly match the slug field in your database
+    where: { slug }, // Directly match the slug field in your database
     include: {
       questions: {
         include: {
@@ -48,12 +47,6 @@ export default async function QuizPage({
             ))}
           </div>
         ))}
-        {/* <button
-          type="submit"
-          className="block mx-auto mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        >
-          Отправить ответы
-        </button> */}
       </form>
     </div>
   );
