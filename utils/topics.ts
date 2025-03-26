@@ -119,55 +119,95 @@ export const laborTopics: SideTopicsType[] = [
 
 export const carouselElectricData: CarouselDataType[] = [
   {
-    url: '/images/electricity/hand-holding-light-bulb.jpg',
+    img: '/images/electricity/hand-holding-light-bulb.jpg',
     text: 'Группа Допуска',
+    url: '/labor/quiz',
   },
   {
-    url: '/images/electricity/electric-car-power-charging.jpg',
+    img: '/images/electricity/electric-car-power-charging.jpg',
     text: 'Испытания',
+    url: '/labor/quiz',
   },
-  { url: '/images/electricity/electrician-testing.jpeg', text: 'Поверка' },
   {
-    url: '/images/electricity/electricity-pylon.jpg',
+    img: '/images/electricity/electrician-testing.jpeg',
+    text: 'Поверка',
+    url: '/electricity',
+  },
+  {
+    img: '/images/electricity/electricity-pylon.jpg',
     text: 'Стажировка и обучение',
+    url: '/labor/quiz',
   },
 
   {
-    url: '/images/electricity/hands-testing-electrical-circuits.jpg',
+    img: '/images/electricity/hands-testing-electrical-circuits.jpg',
     text: 'Калькулятор Расчетов',
+    url: '/labor/quiz',
   },
-  { url: '/images/electricity/working-tools.jpg', text: 'ТКП' },
+  {
+    img: '/images/electricity/working-tools.jpg',
+    text: 'ТКП',
+    url: '/labor/quiz',
+  },
 ];
 export const carouselPlumbingData: CarouselDataType[] = [
-  { url: '/images/plumbing/photo-1.avif', text: 'Отопительный Сезон 2025' },
-  { url: '/images/plumbing/photo-2.avif', text: 'График Температуры' },
-  { url: '/images/plumbing/photo-3.avif', text: 'Стажировка и обучение' },
+  {
+    img: '/images/plumbing/photo-1.avif',
+    text: 'Отопительный Сезон 2025',
+    url: '/plumbing',
+  },
+  {
+    img: '/images/plumbing/photo-2.avif',
+    text: 'График Температуры',
+    url: '/plumbing',
+  },
+  {
+    img: '/images/plumbing/photo-3.avif',
+    text: 'Стажировка и обучение',
+    url: '/plumbing',
+  },
 ];
 
 export const carouselHydraulicsData: CarouselDataType[] = [
   {
-    url: '/images/hydraulics/photo-1.avif',
+    img: '/images/hydraulics/photo-1.avif',
     text: 'Выбрать Гидравическое Масло',
+    url: '/hydraulics',
   },
   {
-    url: '/images/hydraulics/photo-2.avif',
+    img: '/images/hydraulics/photo-2.avif',
     text: 'Ремонт Гидравлической Станции',
+    url: '/hydraulics',
   },
   {
-    url: '/images/hydraulics/photo-3.avif',
+    img: '/images/hydraulics/photo-3.avif',
     text: 'Обслуживание Уравнительных Платформ',
+    url: '/hydraulics',
   },
-  { url: '/images/hydraulics/photo-4.avif', text: 'Обучение и Стажировка' },
+  {
+    img: '/images/hydraulics/photo-4.avif',
+    text: 'Обучение и Стажировка',
+    url: '/hydraulics',
+  },
 ];
 
 export const carouselLaborData: CarouselDataType[] = [
-  { url: '/images/labor/photo-1.avif', text: 'Изменения в ТКП' },
-  { url: '/images/labor/photo-2.avif', text: 'Должностные Инструкции' },
   {
-    url: '/images/labor/photo-3.avif',
-    text: 'Шаблон Документов',
+    img: '/images/labor/photo-5.png',
+    text: 'Пройти Экзамен',
+    url: '/labor/quiz',
   },
-  { url: '/images/labor/photo-4.avif', text: 'Обращения' },
+  {
+    img: '/images/labor/photo-2.avif',
+    text: 'Должностные Инструкции',
+    url: '/labor',
+  },
+  {
+    img: '/images/labor/photo-3.avif',
+    text: 'Шаблон Документов',
+    url: '/labor',
+  },
+  { img: '/images/labor/photo-4.avif', text: 'Обращения', url: '/labor' },
 ];
 
 export const electricContentData: ContentTopicsType[] = [

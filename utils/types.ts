@@ -10,7 +10,7 @@ export type SideTopicsType = {
   description: string;
 };
 
-export type CarouselDataType = { url: string; text: string };
+export type CarouselDataType = { img: string; text: string; url: string };
 export type ContentTopicsType = {
   title: string;
   description: string;
