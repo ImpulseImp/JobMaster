@@ -2,32 +2,35 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 function LoadingPage() {
   return (
-    <div className='container '>
-      <div className='flex justify-center space-x-4'>
-        {/* left */}
-        <div>
-          {/* Image Container */}
-          <div className='flex flex-col space-y-3 border-b-2 border-gray-400 pb-4 max-w-fit mx-auto'>
-            <Skeleton className='min-h-[350px] min-w-[380px] rounded-xl' />
+    <>
+      {/* Carousel and sidebar Container*/}
+      <div className='flex  pb-2 flex-col sm:flex-row justify-center items-center space-y-0 sm:justify-around sm:space-y-0 sm:items-start sm:space-x-4'>
+        {/* Carousel */}
+        <div className='flex  flex-col items-start justify-center space-y-4'>
+          <div className='border-b-2 border-gray-400 pb-4 self-center'>
+            <div className='mt-4 flex flex-col space-y-3 items-center'>
+              <Skeleton className='min-h-[500px] min-w-[380px] rounded-xl sm:min-w-[500px] ' />
+            </div>
           </div>
-          <div className=''>
-            <div className='mt-4 flex flex-col space-y-3 items-center'>
-              <Skeleton className='min-h-[150px] min-w-[380px] rounded-xl sm:min-w-[550px] ' />
-            </div>
-            <div className='mt-4 flex flex-col space-y-3 items-center'>
-              <Skeleton className='min-h-[150px] min-w-[380px] rounded-xl sm:min-w-[550px] ' />
-            </div>
-            <div className='mt-4 flex flex-col space-y-3 items-center'>
-              <Skeleton className='min-h-[150px] min-w-[380px] rounded-xl sm:min-w-[550px] ' />
-            </div>
+          {/* Content */}
+          <div className='mt-4 flex flex-col space-y-3 items-center'>
+            <Skeleton className='min-h-[130px] min-w-[380px] rounded-xl sm:min-w-[750px] ' />
+          </div>
+          <div className='mt-4 flex flex-col space-y-3 items-center'>
+            <Skeleton className='min-h-[130px] min-w-[380px] rounded-xl sm:min-w-[750px] ' />
+          </div>
+          <div className='mt-4 flex flex-col space-y-3 items-center'>
+            <Skeleton className='min-h-[130px] min-w-[380px] rounded-xl sm:min-w-[750px] ' />
           </div>
         </div>
-        {/* right */}
-        <div>
-          <Skeleton className='hidden sm:inline-block min-h-[650px] min-w-[280px] rounded-xl  ' />
+        {/* Sidebar */}
+        <div className='hidden lg:block '>
+          <div className='mt-4 flex flex-col space-y-3 items-center'>
+            <Skeleton className='min-h-[650px] min-w-[380px] rounded-xl sm:min-w-[220px] ' />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
