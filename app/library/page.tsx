@@ -1,4 +1,4 @@
 function LibraryPage() {
-  return <div>LibraryPage</div>;
+  return <div className='min-h-screen'>LibraryPage</div>;
 }
 export default LibraryPage;
