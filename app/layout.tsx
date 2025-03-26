@@ -51,7 +51,7 @@ export default function RootLayout({
               <NavMenu />
             </div>
             <main className='container py-4 md:py-6'>{children}</main>
-            <footer className='container py-4 md:py-6'>
+            <footer className='w-full '>
               <Footer />
             </footer>
           </Providers>

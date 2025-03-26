@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <div className=' h-44 bg-orange-200 flex justify-center items-center'>
+    <div className=' h-44 bg-gray-400 flex justify-center items-center '>
       Footer
     </div>
   );
