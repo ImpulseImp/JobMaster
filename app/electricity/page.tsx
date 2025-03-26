@@ -4,7 +4,14 @@ import {
   electricContentData,
   electricTopics,
 } from '@/utils/topics';
-function ElectricityPage() {
+
+async function delay() {
+  return new Promise((res) => {
+    setTimeout(res, 3000);
+  });
+}
+async function ElectricityPage() {
+  await delay();
   return (
     <div>
       <TopicContainer
