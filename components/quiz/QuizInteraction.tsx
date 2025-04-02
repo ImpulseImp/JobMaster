@@ -2,17 +2,9 @@
 
 import { useState } from 'react';
 import { useQuizStore } from '@/store/quiz';
+import { Quiz } from '@prisma/client';
 
-type Quiz = {
-  title: string;
-  questions: {
-    id: string;
-    text: string;
-    options: { id: string; text: string; isCorrect: boolean }[];
-  }[];
-};
-
-function QuizInteraction({ quiz }: { quiz: Quiz }) {
+function QuizInteraction({ quiz }) {
   const {
     currentQuestionIndex,
     selectedAnswers,
@@ -103,13 +95,16 @@ function QuizInteraction({ quiz }: { quiz: Quiz }) {
           <h3 className='text-xl font-semibold text-gray-800 mt-6'>
             Answer Review:
           </h3>
-          {quiz.questions.map((question) => (
+          {quiz.questions.map((question, idx) => (
             <div
               key={question.id}
               className='p-4 border border-gray-300 rounded-lg mt-4'
             >
+              <h1>
+                {idx + 1}. {question.question}
+              </h1>
               <h4 className='text-lg font-semibold'>{question.text}</h4>
-              {question.options.map((option) => (
+              {question.options.map((option, idx) => (
                 <p
                   key={option.id}
                   className={`p-2 rounded-md ${
@@ -120,7 +115,7 @@ function QuizInteraction({ quiz }: { quiz: Quiz }) {
                       : 'bg-gray-200 text-gray-800'
                   }`}
                 >
-                  {option.text}
+                  {option.choice}
                 </p>
               ))}
             </div>
@@ -131,7 +126,7 @@ function QuizInteraction({ quiz }: { quiz: Quiz }) {
         <div>
           <div className='p-6 bg-gray-50 border border-gray-300 rounded-lg'>
             <h2 className='text-2xl font-semibold mb-4 text-gray-800'>
-              {currentQuestionIndex + 1}. {currentQuestion.text}
+              {currentQuestionIndex + 1}. {currentQuestion.question}
             </h2>
             <div className='space-y-3'>
               {currentQuestion.options.map((option) => (
@@ -150,7 +145,7 @@ function QuizInteraction({ quiz }: { quiz: Quiz }) {
                   }`}
                   onClick={() => handleSelectOption(option.id)}
                 >
-                  {option.text}
+                  {option.choice}
                 </div>
               ))}
             </div>

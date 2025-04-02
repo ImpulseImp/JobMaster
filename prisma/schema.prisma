@@ -42,12 +42,12 @@ model Quiz {
   categoryId  String         @db.ObjectId
   category    QuizCategory   @relation(fields: [categoryId], references: [id])
   questions   QuizQuestion[]
-  results     QuizResult[]
+  quizResults QuizResult[]
 }
 
 model QuizQuestion {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  text        String
+  question    String
   answer      String
   explanation String?
   quizId      String   @db.ObjectId
@@ -57,18 +57,19 @@ model QuizQuestion {
 
 model Option {
   id         String       @id @default(cuid()) @map("_id")
-  text       String
+  choice     String
   isCorrect  Boolean
   questionId String       @db.ObjectId
   question   QuizQuestion @relation(fields: [questionId], references: [id])
 }
 
 model QuizResult {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId     String   @db.ObjectId
-  user       User     @relation(fields: [userId], references: [id])
-  quizId     String   @db.ObjectId
-  quiz       Quiz     @relation(fields: [quizId], references: [id]) // Single relation definition
-  score      Int
-  passedDate DateTime
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String    @db.ObjectId
+  user        User      @relation(fields: [userId], references: [id])
+  quizId      String    @db.ObjectId
+  quiz        Quiz      @relation(fields: [quizId], references: [id])
+  attempts    Int       @default(0)
+  score       Int
+  lastAttempt DateTime?
 }

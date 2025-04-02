@@ -1,11 +1,9 @@
 'use client';
 
+import { Quiz } from '@prisma/client';
+
 type QuizItemProps = {
-  quiz: {
-    id: string;
-    title: string;
-    slug: string;
-  };
+  quiz: Quiz;
   onSelect: (slug: string) => void;
 };
 

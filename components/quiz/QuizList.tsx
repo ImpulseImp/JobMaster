@@ -3,15 +3,10 @@
 import QuizItem from './QuizItem';
 import EmptyState from './EmptyState';
 import { useRouter } from 'next/navigation';
-
-type Quiz = {
-  id: string;
-  title: string;
-  slug: string;
-};
+import { Quiz } from '@prisma/client';
 
 type QuizListProps = {
-  quizzes: Quiz[] | null;
+  quizzes: Quiz[];
 };
 
 function QuizList({ quizzes }: QuizListProps) {

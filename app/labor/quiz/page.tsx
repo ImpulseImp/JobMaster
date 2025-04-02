@@ -1,15 +1,5 @@
-'use server';
-
 import QuizContainer from '@/components/quiz/QuizContainer';
-import prisma from '@/utils/db';
-
-const fetchQuizCategories = async function () {
-  const categories = await prisma.quizCategory.findMany({
-    select: { id: true, title: true, description: true }, // Include description
-  });
-
-  return categories;
-};
+import { fetchQuizCategories } from '@/utils/actions';
 
 async function QuizPage() {
   const quizCategories = await fetchQuizCategories();
