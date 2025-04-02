@@ -16,12 +16,13 @@ type SelectCategoryProps = {
 };
 
 function SelectCategory({ categories }: SelectCategoryProps) {
-  const quizSelect = useQuizStore((state) => state.quizSelect);
+  const categorySelect = useQuizStore((state) => state.categorySelect);
+  const categoryID = useQuizStore((state) => state.currentCategoryId);
   const loading = useQuizStore((state) => state.loading);
   const currentCategoryId = useQuizStore((state) => state.currentCategoryId);
   console.log(currentCategoryId);
   return (
-    <Select onValueChange={quizSelect}>
+    <Select onValueChange={categorySelect} value={categoryID}>
       <SelectTrigger className='w-[200px] ' disabled={loading}>
         <SelectValue placeholder='— Выберите тему —' />
       </SelectTrigger>

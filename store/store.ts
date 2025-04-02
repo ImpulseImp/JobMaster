@@ -7,15 +7,14 @@ type QuizStore = {
   quizzes: Quiz[];
   loading: boolean;
   currentCategoryId: string;
-  quizSelect: (quizID: string) => void;
+  categorySelect: (quizID: string) => void;
 };
 
 export const useQuizStore = create<QuizStore>((set) => ({
   quizzes: [],
   loading: false,
   currentCategoryId: '',
-
-  quizSelect: async (quizID: string) => {
+  categorySelect: async (quizID: string) => {
     set({ loading: true, currentCategoryId: quizID });
 
     const response = await axios(`/api/quizzes?categoryId=${quizID}`);
