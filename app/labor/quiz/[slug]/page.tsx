@@ -1,4 +1,3 @@
-import QuizInteraction from '@/components/quiz/QuizInteraction';
 import prisma from '@/utils/db';
 
 export default async function QuizPage({
@@ -25,5 +24,5 @@ export default async function QuizPage({
   }
 
   // Pass the quiz data to the client component
-  return <QuizInteraction quiz={quiz} />;
+  return null;
 }
