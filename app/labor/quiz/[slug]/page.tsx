@@ -2,8 +2,11 @@ import QuizContainer from '@/components/quiz/QuizContainer';
 import QuizStart from '@/components/quiz/QuizStart';
 import prisma from '@/utils/db';
 
-async function QuizPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+type QuizPageProps = {
+  params: Promise<{ slug: string }>;
+};
+async function QuizPage({ params }: QuizPageProps) {
+  const { slug } = await params;
   // console.log(slug);
   // const quiz = await prisma.quiz.findFirst({
   //   where: {
