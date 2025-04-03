@@ -15,10 +15,15 @@ type QuizStore = {
   resetQuiz: () => void;
   setCurrentQuiz: (quiz: FetchedQuiz) => void;
   skipQuestion: () => void;
+  currentIndex: number;
+  currentChoiceID: string | null;
+  setCurrentChoice: (choiceID: string) => void;
 };
 
 export const useQuizStore = create<QuizStore>((set) => ({
+  currentChoiceID: null,
   isQuizStarted: false,
+  currentIndex: 0,
   quizzes: [],
   loading: false,
   currentCategoryId: '',
@@ -41,5 +46,19 @@ export const useQuizStore = create<QuizStore>((set) => ({
   setCurrentQuiz: (quiz: FetchedQuiz) => {
     set({ currentQuiz: quiz });
   },
-  skipQuestion: () => {},
+  setCurrentChoice: (choiceID: string) => {
+    set({ currentChoiceID: choiceID });
+  },
+  skipQuestion: () => {
+    set((state) => {
+      if (state.currentQuiz) {
+        const nextQuestion =
+          state.currentIndex < state.currentQuiz.questions.length - 1
+            ? state.currentIndex + 1
+            : state.currentIndex;
+        return { currentIndex: nextQuestion, currentChoiceID: null };
+      }
+      return state;
+    });
+  },
 }));

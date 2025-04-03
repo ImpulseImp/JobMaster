@@ -7,6 +7,8 @@ function QuizList() {
   const loading = useQuizStore((state) => state.loading);
   const quizzes = useQuizStore((state) => state.quizzes);
 
+  console.log(quizzes);
+
   if (loading) {
     return (
       <div className='flex justify-center items-center h-60 bg-gray-100 rounded-lg shadow-md text-lg text-gray-600'>
@@ -16,20 +18,18 @@ function QuizList() {
   }
 
   return (
-    <div className='flex flex-col space-y-6 bg-white shadow-md rounded-xl p-6 border border-gray-300'>
+    <div className='flex flex-col space-y-6 bg-white shadow-lg rounded-xl p-6 border border-gray-200'>
+      {quizzes.length === 0 && (
+        <div className='text-center text-gray-600 text-sm'>
+          Пожалуйста, выберите категорию, чтобы продолжить.
+        </div>
+      )}
       {/* Render Quiz Items */}
       <ul className='space-y-4'>
-        {quizzes?.map((quiz) => (
+        {quizzes.map((quiz) => (
           <QuizItem key={quiz.id} quiz={quiz} />
         ))}
       </ul>
-
-      {/* Start Button */}
-      <div className='flex justify-center'>
-        <button className='w-full sm:w-auto px-6 py-3 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-600 transition-all'>
-          Начать
-        </button>
-      </div>
     </div>
   );
 }

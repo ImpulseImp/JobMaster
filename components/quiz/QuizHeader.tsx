@@ -7,7 +7,7 @@ type QuizHeaderProps = {
 
 function QuizHeader({ categories }: QuizHeaderProps) {
   return (
-    <div className='text-gray-800 pb-6 text-center flex flex-col items-center border-b border-gray-300'>
+    <div className='text-gray-800 pb-6 text-center flex flex-col items-center '>
       <label
         htmlFor='category'
         className='block text-lg font-bold mb-3 text-gray-700'
