@@ -3,7 +3,7 @@ import QuizStart from '@/components/quiz/QuizStart';
 import prisma from '@/utils/db';
 
 async function QuizPage({ params }: { params: { slug: string } }) {
-  const { slug } = await params;
+  const { slug } = params;
   // console.log(slug);
   // const quiz = await prisma.quiz.findFirst({
   //   where: {
