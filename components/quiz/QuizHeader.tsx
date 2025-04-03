@@ -7,8 +7,11 @@ type QuizHeaderProps = {
 
 function QuizHeader({ categories }: QuizHeaderProps) {
   return (
-    <div className='primeTextColor pb-6 text-2xl flex flex-col items-center border-b border-gray-400'>
-      <label htmlFor='category' className='block  text-lg font-semibold'>
+    <div className='text-gray-800 pb-6 text-center flex flex-col items-center border-b border-gray-300'>
+      <label
+        htmlFor='category'
+        className='block text-lg font-bold mb-3 text-gray-700'
+      >
         📝 Выберите тему для вашего экзамена
       </label>
       <SelectCategory

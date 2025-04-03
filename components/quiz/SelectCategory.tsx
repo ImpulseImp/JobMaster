@@ -31,7 +31,7 @@ function SelectCategory({ categories }: SelectCategoryProps) {
           <SelectLabel>Список тем</SelectLabel>
           {categories?.map((category) => (
             <SelectItem key={category.id} value={category.id}>
-              <p onClick={() => {}}>{category.title}</p>
+              <p>{category.title}</p>
             </SelectItem>
           ))}
         </SelectGroup>

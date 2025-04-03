@@ -1,17 +1,8 @@
-// import { QuizCategory } from '@prisma/client';
-
-// type QuizContainerProps = {
-//   categories: QuizCategory[];
-// };
-
-// function QuizContainer({ categories }: QuizContainerProps) {
-//   return (
-//     <div className='border border-gray-600 rounded-lg shadow-md min-h-[500px] p-6 mt-6 bg-gray-100'>
-//       <QuizHeader
-//           quizCategories={quizCategories}
-//           onCategorySelect={loadQuizzes}
-//         />
-//     </div>
-//   );
-// }
-// export default QuizContainer;
+function QuizContainer({ children }: { children: React.ReactNode }) {
+  return (
+    <div className='border border-gray-300 rounded-xl shadow-lg min-h-[500px] p-8 mt-8 bg-white max-w-3xl mx-auto'>
+      {children}
+    </div>
+  );
+}
+export default QuizContainer;

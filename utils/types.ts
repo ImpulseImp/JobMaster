@@ -1,3 +1,5 @@
+import { Prisma } from '@prisma/client';
+
 export type SectionType = {
   question: string;
   answer: string;
@@ -15,3 +17,13 @@ export type ContentTopicsType = {
   title: string;
   description: string;
 };
+
+export type FetchedQuiz = Prisma.QuizGetPayload<{
+  include: {
+    questions: {
+      include: {
+        options: true;
+      };
+    };
+  };
+}>;
