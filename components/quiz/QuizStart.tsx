@@ -10,10 +10,13 @@ import QuizBegin from './QuizBegin';
 function QuizStart({ quiz }: { quiz: FetchedQuiz }) {
   const isQuizStarted = useQuizStore((state) => state.isQuizStarted);
   const setCurrentQuiz = useQuizStore((state) => state.setCurrentQuiz);
+  const resetQuiz = useQuizStore((state) => state.resetQuiz);
 
   useEffect(() => {
     setCurrentQuiz(quiz);
-  }, [quiz, setCurrentQuiz]);
+
+    return () => resetQuiz();
+  }, [quiz, setCurrentQuiz, resetQuiz]);
 
   return (
     <div>

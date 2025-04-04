@@ -7,10 +7,16 @@ function QuizBegin() {
   const skipQuestion = useQuizStore((state) => state.skipQuestion);
   const currentIndex = useQuizStore((state) => state.currentIndex);
   const { questions } = quiz as FetchedQuiz;
-  console.log(questions);
   const setCurrentChoice = useQuizStore((state) => state.setCurrentChoice);
   const currentChoiceID = useQuizStore((state) => state.currentChoiceID);
-  console.log(currentChoiceID);
+  const addAnsweredQuestionIDs = useQuizStore(
+    (state) => state.addAnsweredQuestionIDs
+  );
+  const answeredQuestionsIDs = useQuizStore(
+    (state) => state.answeredQuestionsIDs
+  );
+  console.log(answeredQuestionsIDs);
+
   return (
     <>
       <div className='flex flex-col justify-center items-center bg-gray-100 p-8 rounded-lg shadow-md'>
@@ -25,9 +31,11 @@ function QuizBegin() {
       <ul className='mt-6 space-y-4 mb-6'>
         {questions[currentIndex].options.map((option) => (
           <button
+            disabled={currentChoiceID !== null}
             key={option.id}
             onClick={() => {
               setCurrentChoice(option.id);
+              addAnsweredQuestionIDs(questions[currentIndex].id);
             }}
             className={` w-full py-3 px-4 rounded-lg text-lg font-semibold transition-colors duration-300 ${
               currentChoiceID
