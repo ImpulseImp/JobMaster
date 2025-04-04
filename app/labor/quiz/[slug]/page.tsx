@@ -5,14 +5,9 @@ import prisma from '@/utils/db';
 type QuizPageProps = {
   params: Promise<{ slug: string }>;
 };
+
 async function QuizPage({ params }: QuizPageProps) {
   const { slug } = await params;
-  // console.log(slug);
-  // const quiz = await prisma.quiz.findFirst({
-  //   where: {
-  //     slug,
-  //   },
-  // });
   const quiz = await prisma.quiz.findUnique({
     where: { slug },
     include: {
@@ -21,8 +16,6 @@ async function QuizPage({ params }: QuizPageProps) {
       },
     },
   });
-  console.log(quiz);
-
   return (
     <QuizContainer>
       <div className='text-center text-gray-800'>

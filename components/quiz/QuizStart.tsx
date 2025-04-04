@@ -8,9 +8,9 @@ import { useEffect } from 'react';
 import QuizBegin from './QuizBegin';
 
 function QuizStart({ quiz }: { quiz: FetchedQuiz }) {
-  const isQuizStarted = useQuizStore((state) => state.isQuizStarted);
   const setCurrentQuiz = useQuizStore((state) => state.setCurrentQuiz);
   const resetQuiz = useQuizStore((state) => state.resetQuiz);
+  const quizStatus = useQuizStore((state) => state.quizStatus);
 
   useEffect(() => {
     setCurrentQuiz(quiz);
@@ -21,9 +21,9 @@ function QuizStart({ quiz }: { quiz: FetchedQuiz }) {
   return (
     <div>
       {/* Quiz Header */}
-      {!isQuizStarted && <QuizStartHeader />}
+      {quizStatus === 'ready' && <QuizStartHeader />}
       {/* Start the Quiz */}
-      {isQuizStarted && <QuizBegin />}
+      {quizStatus === 'active' && <QuizBegin />}
     </div>
   );
 }

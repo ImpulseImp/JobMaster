@@ -4,12 +4,10 @@ import { useQuizStore } from '@/store/store';
 import QuizItem from './QuizItem';
 
 function QuizList() {
-  const loading = useQuizStore((state) => state.loading);
   const quizzes = useQuizStore((state) => state.quizzes);
+  const quizStatus = useQuizStore((state) => state.quizStatus);
 
-  console.log(quizzes);
-
-  if (loading) {
+  if (quizStatus === 'loading') {
     return (
       <div className='flex justify-center items-center h-60 bg-gray-100 rounded-lg shadow-md text-lg text-gray-600'>
         Загрузка...

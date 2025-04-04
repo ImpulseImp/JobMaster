@@ -1,13 +1,13 @@
 import { FetchedQuiz } from '@/utils/types';
 import { Quiz } from '@prisma/client';
 import axios from 'axios';
-
 import { create } from 'zustand';
 
 type QuizStore = {
   quizzes: Quiz[];
   loading: boolean;
-  isQuizStarted: boolean;
+  quizStatus: 'inactive' | 'loading' | 'ready' | 'active' | 'finished';
+
   currentCategoryId: string;
   currentQuiz: FetchedQuiz | null;
   currentIndex: number;
@@ -24,43 +24,52 @@ type QuizStore = {
 };
 
 export const useQuizStore = create<QuizStore>((set) => ({
+  quizStatus: 'inactive',
   currentChoiceID: null,
-  isQuizStarted: false,
   currentIndex: 0,
   quizzes: [],
   answeredQuestionsIDs: [],
   loading: false,
   currentCategoryId: '',
   currentQuiz: null,
+
   categorySelect: async (quizID: string) => {
-    set({ loading: true, currentCategoryId: quizID, isQuizStarted: false });
+    set({
+      quizStatus: 'loading',
+      currentCategoryId: quizID,
+    });
     try {
       const response = await axios(`/api/quizzes?categoryId=${quizID}`);
-      set({ loading: false, quizzes: response.data.quizzes });
+      set({ quizStatus: 'ready', quizzes: response.data.quizzes });
     } catch (error) {
       console.log(error);
     }
   },
+
   startQuiz: () => {
-    set({ isQuizStarted: true });
+    set({ quizStatus: 'active' });
   },
+
   resetQuiz: () => {
     set({
-      isQuizStarted: false,
       currentIndex: 0,
       currentChoiceID: null,
       quizzes: [],
       answeredQuestionsIDs: [],
       currentCategoryId: '',
       currentQuiz: null,
+      quizStatus: 'inactive',
     });
   },
+
   setCurrentQuiz: (quiz: FetchedQuiz) => {
-    set({ currentQuiz: quiz });
+    set({ currentQuiz: quiz, quizStatus: 'ready' });
   },
+
   setCurrentChoice: (choiceID: string) => {
     set({ currentChoiceID: choiceID });
   },
+
   skipQuestion: () => {
     set((state) => {
       if (state.currentQuiz) {

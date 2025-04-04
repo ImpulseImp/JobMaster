@@ -16,7 +16,6 @@ function QuizStartHeader() {
       <p>Удачи!</p>
 
       <Button onClick={startQuiz}>Начать</Button>
-      {/*  */}
     </div>
   );
 }
