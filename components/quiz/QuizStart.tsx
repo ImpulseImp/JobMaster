@@ -14,7 +14,6 @@ function QuizStart({ quiz }: { quiz: FetchedQuiz }) {
 
   useEffect(() => {
     setCurrentQuiz(quiz);
-
     return () => resetQuiz();
   }, [quiz, setCurrentQuiz, resetQuiz]);
 

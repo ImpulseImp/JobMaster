@@ -5,7 +5,6 @@ import { create } from 'zustand';
 
 type QuizStore = {
   quizzes: Quiz[];
-  loading: boolean;
   quizStatus: 'inactive' | 'loading' | 'ready' | 'active' | 'finished';
 
   currentCategoryId: string;
@@ -25,14 +24,14 @@ type QuizStore = {
 
 export const useQuizStore = create<QuizStore>((set) => ({
   quizStatus: 'inactive',
-  currentChoiceID: null,
-  currentIndex: 0,
   quizzes: [],
-  answeredQuestionsIDs: [],
-  loading: false,
-  currentCategoryId: '',
+  currentIndex: 0,
   currentQuiz: null,
+  answeredQuestions: [],
 
+  answeredQuestionsIDs: [],
+  currentChoiceID: null,
+  currentCategoryId: '',
   categorySelect: async (quizID: string) => {
     set({
       quizStatus: 'loading',
