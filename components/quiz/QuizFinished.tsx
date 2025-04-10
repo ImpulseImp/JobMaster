@@ -34,7 +34,7 @@ function QuizFinished() {
         Вопрос {currentIndex + 1}/{totalQuestions}
       </p>
       {/* Display Current Question */}
-      <div className='flex flex-col justify-center items-center  min-h-[150px] sm:min-h-[130px] p-4 px-6 rounded-lg shadow-md'>
+      <div className='flex flex-col justify-center items-center  min-h-[150px] sm:min-h-[130px] p-4 px-6 rounded-lg shadow-md dark:border dark:border-gray-200'>
         <h1 className='text-xl sm:text-2xl font-bold w-full sm:text-center'>
           {currentQuestion.question}
         </h1>
