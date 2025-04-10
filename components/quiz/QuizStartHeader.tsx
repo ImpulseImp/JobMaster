@@ -1,9 +1,19 @@
 import { useQuizStore } from '@/store/store';
 import { Button } from '../ui/button';
+import { useEffect } from 'react';
 
 function QuizStartHeader() {
   const startQuiz = useQuizStore((state) => state.startQuiz);
+
   const currentQuiz = useQuizStore((state) => state.currentQuiz);
+
+  const resetQuiz = useQuizStore((state) => state.resetQuiz);
+  useEffect(() => {
+    return () => {
+      console.log('page left');
+      // resetQuiz();
+    };
+  }, [resetQuiz]);
   return (
     <div className='flex flex-col items-center'>
       <h1>Добро пожаловать!</h1>

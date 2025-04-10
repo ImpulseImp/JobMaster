@@ -42,20 +42,32 @@ export const useQuizStore = create<QuizStore>((set) => ({
   currentChoiceID: null,
   currentCategoryId: '',
   categorySelect: async (quizID: string) => {
-    set({
-      quizStatus: 'loading',
-      currentCategoryId: quizID,
+    set((state) => {
+      state.resetQuiz(); // Reset previous quiz state
+      return {
+        quizStatus: 'loading',
+        currentCategoryId: quizID,
+      };
     });
     try {
       const response = await axios(`/api/quizzes?categoryId=${quizID}`);
-      set({ quizStatus: 'ready', quizzes: response.data.quizzes });
+      set({
+        quizStatus: 'ready',
+        quizzes: response.data.quizzes,
+      });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   },
 
   startQuiz: () => {
-    set({ quizStatus: 'active' });
+    set({
+      quizStatus: 'active',
+      answeredQuestions: [], // Clear previous answers
+      currentIndex: 0, // Start from the first question
+      currentChoiceID: null,
+      quizzes: [],
+    });
   },
 
   resetQuiz: () => {
@@ -73,7 +85,10 @@ export const useQuizStore = create<QuizStore>((set) => ({
   setCurrentQuiz: (quiz: FetchedQuiz) => {
     set({
       currentQuiz: quiz,
-      originalQuestions: quiz.questions, // Save the original questions
+      originalQuestions: quiz.questions,
+      answeredQuestions: [], // Clear previous answers
+      currentIndex: 0, // Start from the first question
+      currentChoiceID: null, // Clear any selected choice
       quizStatus: 'ready',
     });
   },

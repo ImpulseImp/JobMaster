@@ -16,9 +16,6 @@ function QuizBegin() {
   const addAnsweredQuestionIDs = useQuizStore(
     (state) => state.addAnsweredQuestionIDs
   );
-  // const answeredQuestionsIDs = useQuizStore(
-  //   (state) => state.answeredQuestionsIDs
-  // );
 
   const answeredQuestions = useQuizStore((state) => state.answeredQuestions);
 

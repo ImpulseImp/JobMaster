@@ -19,8 +19,7 @@ function SelectCategory({ categories }: SelectCategoryProps) {
   const categorySelect = useQuizStore((state) => state.categorySelect);
   const categoryID = useQuizStore((state) => state.currentCategoryId);
   const quizStatus = useQuizStore((state) => state.quizStatus);
-  const currentCategoryId = useQuizStore((state) => state.currentCategoryId);
-  console.log(currentCategoryId);
+
   return (
     <Select onValueChange={categorySelect} value={categoryID}>
       <SelectTrigger className='w-[200px] ' disabled={quizStatus === 'loading'}>
