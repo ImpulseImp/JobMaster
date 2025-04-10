@@ -31,7 +31,7 @@ function QuizBegin() {
         ) + 1}
         /{originalQuestions.length}
       </p>
-      <div className=' flex flex-col justify-center items-center bg-gray-100 min-h-[130px] p-4 px-6 rounded-lg shadow-md'>
+      <div className=' flex flex-col justify-center items-center bg-gray-100 min-h-[150px] sm:min-h-[130px] p-4 px-6 rounded-lg shadow-md'>
         <h1 className='text-xl sm:text-2xl font-bold text-gray-800 w-full sm:text-center'>
           {questions[currentIndex].question}
         </h1>
@@ -63,7 +63,7 @@ function QuizBegin() {
       </ul>
       {/* Track answered questions */}
       <div className='flex flex-col items-center sm:flex-row sm:justify-between  mt-4 space-y-4 sm:space-y-0'>
-        <div className='flex gap-2'>
+        <div className='flex  sm:gap-2'>
           {originalQuestions.map((question, idx) => {
             const answerStatus = answeredQuestions.find(
               (a) => a.questionID === question.id

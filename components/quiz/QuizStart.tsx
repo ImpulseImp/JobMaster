@@ -18,7 +18,7 @@ function QuizStart({ quiz }: { quiz: FetchedQuiz }) {
   }, [quiz, setCurrentQuiz, resetQuiz]);
 
   return (
-    <div className='max-w-xl '>
+    <div className='max-w-xs sm:max-w-xl '>
       {/* Quiz Header */}
       {quizStatus === 'ready' && <QuizStartHeader />}
       {/* Start the Quiz */}
