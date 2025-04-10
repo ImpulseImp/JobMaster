@@ -70,16 +70,22 @@ function QuizBegin() {
               (a) => a.questionID === question.id
             );
 
+            const isCurrent = question.id === questions[currentIndex].id;
+
             const spanClass = !answerStatus
               ? 'bg-gray-300' // Unanswered - Gray
               : answerStatus.isCorrect
               ? 'bg-green-500' // Correct - Green
-              : 'bg-red-500'; // Incorrect - Red
+              : 'bg-red-500'; // Incorrect - Red;
+
+            const borderClass = isCurrent
+              ? 'border-2 border-gray-500'
+              : 'border'; // Highlight border for the current question
 
             return (
               <span
                 key={idx}
-                className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-semibold ${spanClass}`}
+                className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-semibold ${spanClass} ${borderClass}`}
               >
                 {idx + 1}
               </span>
