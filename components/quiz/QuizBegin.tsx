@@ -47,7 +47,7 @@ function QuizBegin() {
               setCurrentChoice(option.id);
               addAnsweredQuestionIDs(questions[currentIndex].id, isCorrect);
             }}
-            className={` w-full py-3 px-4 rounded-lg text-sm sm:text-lg font-semibold transition-colors duration-300 ${
+            className={` w-full py-3 px-4 rounded-lg text-lg sm:text-lg font-semibold transition-colors duration-300 ${
               currentChoiceID
                 ? option.isCorrect
                   ? 'bg-green-500 text-white'
