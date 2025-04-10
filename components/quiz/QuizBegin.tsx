@@ -24,16 +24,15 @@ function QuizBegin() {
 
   return (
     <div className=''>
-      <div className=' flex flex-col justify-center items-center bg-gray-100 p-8 rounded-lg shadow-md'>
-        <p className='text-gray-700 text-sm mb-2'>
-          Вопрос{' '}
-          {originalQuestions.findIndex(
-            (q) => q.id === questions[currentIndex].id
-          ) + 1}
-          /{originalQuestions.length}
-        </p>
-
-        <h1 className='text-2xl font-bold text-gray-800 w-full'>
+      <p className='text-gray-700 text-sm  '>
+        Вопрос{' '}
+        {originalQuestions.findIndex(
+          (q) => q.id === questions[currentIndex].id
+        ) + 1}
+        /{originalQuestions.length}
+      </p>
+      <div className=' flex flex-col justify-center items-center bg-gray-100 min-h-[130px] p-4 px-6 rounded-lg shadow-md'>
+        <h1 className='text-xl sm:text-2xl font-bold text-gray-800 w-full sm:text-center'>
           {questions[currentIndex].question}
         </h1>
       </div>
@@ -48,7 +47,7 @@ function QuizBegin() {
               setCurrentChoice(option.id);
               addAnsweredQuestionIDs(questions[currentIndex].id, isCorrect);
             }}
-            className={` w-full py-3 px-4 rounded-lg text-lg font-semibold transition-colors duration-300 ${
+            className={` w-full py-3 px-4 rounded-lg text-sm sm:text-lg font-semibold transition-colors duration-300 ${
               currentChoiceID
                 ? option.isCorrect
                   ? 'bg-green-500 text-white'
@@ -63,7 +62,7 @@ function QuizBegin() {
         ))}
       </ul>
       {/* Track answered questions */}
-      <div className='flex flex-col items-center sm:flex-row sm:justify-between  mt-4'>
+      <div className='flex flex-col items-center sm:flex-row sm:justify-between  mt-4 space-y-4 sm:space-y-0'>
         <div className='flex gap-2'>
           {originalQuestions.map((question, idx) => {
             const answerStatus = answeredQuestions.find(
