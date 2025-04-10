@@ -14,18 +14,28 @@ type QuizStore = {
 
   originalQuestions: FetchedQuiz['questions'];
 
-  answeredQuestions: { questionID: string; isCorrect: boolean }[];
+  answeredQuestions: {
+    questionID: string;
+    optionID: string;
+    isCorrect: boolean;
+  }[];
 
   answeredQuestionsIDs: string[];
 
   categorySelect: (quizID: string) => void;
   startQuiz: () => void;
+  finishQuiz: () => void;
   resetQuiz: () => void;
   setCurrentQuiz: (quiz: FetchedQuiz) => void;
   skipQuestion: () => void;
   setCurrentChoice: (choiceID: string) => void;
-  addAnsweredQuestionIDs: (questionID: string, isCorrect: boolean) => void;
+  addAnsweredQuestionIDs: (
+    questionID: string,
+    optionID: string,
+    isCorrect: boolean
+  ) => void;
   revisitUnansweredQuestions: () => void;
+  setCurrentIndex: (index: number) => void;
 };
 
 export const useQuizStore = create<QuizStore>((set) => ({
@@ -118,11 +128,15 @@ export const useQuizStore = create<QuizStore>((set) => ({
     });
   },
 
-  addAnsweredQuestionIDs: (questionID: string, isCorrect: boolean) => {
+  addAnsweredQuestionIDs: (
+    questionID: string,
+    optionID: string,
+    isCorrect: boolean
+  ) => {
     set((state) => ({
       answeredQuestions: [
         ...state.answeredQuestions,
-        { questionID, isCorrect },
+        { questionID, optionID, isCorrect }, // Store optionID as well
       ],
     }));
   },
@@ -156,4 +170,9 @@ export const useQuizStore = create<QuizStore>((set) => ({
       return state;
     });
   },
+
+  finishQuiz: () => {
+    set({ quizStatus: 'finished', currentIndex: 0 });
+  },
+  setCurrentIndex: (index: number) => set({ currentIndex: index }),
 }));

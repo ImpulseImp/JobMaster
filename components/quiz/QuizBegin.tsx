@@ -1,6 +1,7 @@
 import { useQuizStore } from '@/store/store';
 import { FetchedQuiz } from '@/utils/types';
 import { Button } from '../ui/button';
+import Link from 'next/link';
 
 function QuizBegin() {
   const quiz = useQuizStore((state) => state.currentQuiz);
@@ -16,19 +17,20 @@ function QuizBegin() {
   const addAnsweredQuestionIDs = useQuizStore(
     (state) => state.addAnsweredQuestionIDs
   );
-
   const answeredQuestions = useQuizStore((state) => state.answeredQuestions);
+  const isFinished = originalQuestions.length === answeredQuestions.length;
+  const finishQuiz = useQuizStore((state) => state.finishQuiz);
 
   return (
     <div className=''>
-      <p className='text-gray-700 text-sm  '>
+      <p className='text-gray-700 text-sm'>
         Вопрос{' '}
         {originalQuestions.findIndex(
           (q) => q.id === questions[currentIndex].id
         ) + 1}
         /{originalQuestions.length}
       </p>
-      <div className=' flex flex-col justify-center items-center bg-gray-100 min-h-[150px] sm:min-h-[130px] p-4 px-6 rounded-lg shadow-md'>
+      <div className='flex flex-col justify-center items-center bg-gray-100 min-h-[150px] sm:min-h-[130px] p-4 px-6 rounded-lg shadow-md'>
         <h1 className='text-xl sm:text-2xl font-bold text-gray-800 w-full sm:text-center'>
           {questions[currentIndex].question}
         </h1>
@@ -40,16 +42,20 @@ function QuizBegin() {
             disabled={currentChoiceID !== null}
             key={option.id}
             onClick={() => {
-              const isCorrect = option.isCorrect;
-              setCurrentChoice(option.id);
-              addAnsweredQuestionIDs(questions[currentIndex].id, isCorrect);
+              const isCorrect = option.isCorrect; // Determine if the selected option is correct
+              setCurrentChoice(option.id); // Update the current choice
+              addAnsweredQuestionIDs(
+                questions[currentIndex].id,
+                option.id, // Pass the user's selected optionID
+                isCorrect
+              ); // Store the user's answer and correctness
             }}
-            className={` w-full py-3 px-4 rounded-lg text-lg sm:text-lg font-semibold transition-colors duration-300 ${
+            className={`w-full py-3 px-4 rounded-lg text-lg sm:text-lg font-semibold transition-colors duration-300 ${
               currentChoiceID
                 ? option.isCorrect
-                  ? 'bg-green-500 text-white'
+                  ? ' bg-green-100 text-green-700 font-bold border border-green-400'
                   : currentChoiceID === option.id
-                  ? 'bg-red-500 text-white'
+                  ? 'bg-red-100 text-red-700 font-bold border border-red-400'
                   : 'bg-gray-200 text-gray-800'
                 : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
             }`}
@@ -59,8 +65,8 @@ function QuizBegin() {
         ))}
       </ul>
       {/* Track answered questions */}
-      <div className='flex flex-col items-center sm:flex-row sm:justify-between  mt-4 space-y-4 sm:space-y-0'>
-        <div className='flex  sm:gap-2'>
+      <div className='flex flex-col items-center sm:flex-row sm:justify-between mt-4 space-y-4 sm:space-y-0'>
+        <div className='flex sm:gap-2'>
           {originalQuestions.map((question, idx) => {
             const answerStatus = answeredQuestions.find(
               (a) => a.questionID === question.id
@@ -72,7 +78,7 @@ function QuizBegin() {
               ? 'bg-gray-300' // Unanswered - Gray
               : answerStatus.isCorrect
               ? 'bg-green-500' // Correct - Green
-              : 'bg-red-500'; // Incorrect - Red;
+              : 'bg-red-500'; // Incorrect - Red
 
             const borderClass = isCurrent
               ? 'border-2 border-gray-500'
@@ -89,27 +95,34 @@ function QuizBegin() {
           })}
         </div>
 
-        {/* Skip Question or Next Question*/}
+        {/* Skip Question or Next Question */}
         <div>
-          <Button
-            onClick={() => {
-              if (currentIndex === questions.length - 1) {
-                // Check if there are any unanswered questions to revisit
-                revisitUnansweredQuestions();
-              } else {
-                skipQuestion();
-              }
-            }}
-          >
-            {currentChoiceID ? 'Дальше' : 'Пропустить'}
-          </Button>
+          {!isFinished && (
+            <Button
+              onClick={() => {
+                if (currentIndex === questions.length - 1) {
+                  revisitUnansweredQuestions();
+                } else {
+                  skipQuestion();
+                }
+              }}
+            >
+              {currentChoiceID ? 'Дальше' : 'Пропустить'}
+            </Button>
+          )}
         </div>
       </div>
       {/* Watch Description */}
+      {isFinished && (
+        <div className='flex flex-col sm:flex-row sm:justify-between mt-2 space-y-2 sm:space-y-0'>
+          <Button asChild>
+            <Link href={'/labor/quiz/'}>Вернуться к списку экзаменов</Link>
+          </Button>
+          <Button onClick={finishQuiz}>Посмотреть результат</Button>
+        </div>
+      )}
     </div>
   );
 }
-export default QuizBegin;
 
-// const answeredQuestions = useQuizStore((state) => state.answeredQuestions);
-// import { useQuizStore } from '@/store/store';
+export default QuizBegin;

@@ -6,6 +6,7 @@ import { FetchedQuiz } from '@/utils/types';
 import QuizStartHeader from './QuizStartHeader';
 import { useEffect } from 'react';
 import QuizBegin from './QuizBegin';
+import QuizFinished from './QuizFinished';
 
 function QuizStart({ quiz }: { quiz: FetchedQuiz }) {
   const setCurrentQuiz = useQuizStore((state) => state.setCurrentQuiz);
@@ -23,6 +24,8 @@ function QuizStart({ quiz }: { quiz: FetchedQuiz }) {
       {quizStatus === 'ready' && <QuizStartHeader />}
       {/* Start the Quiz */}
       {quizStatus === 'active' && <QuizBegin />}
+      {/* Watch the History */}
+      {quizStatus === 'finished' && <QuizFinished />}
     </div>
   );
 }
