@@ -11,6 +11,11 @@ type QuizStore = {
   currentQuiz: FetchedQuiz | null;
   currentIndex: number;
   currentChoiceID: string | null;
+
+  originalQuestions: FetchedQuiz['questions'];
+
+  answeredQuestions: { questionID: string; isCorrect: boolean }[];
+
   answeredQuestionsIDs: string[];
 
   categorySelect: (quizID: string) => void;
@@ -19,7 +24,8 @@ type QuizStore = {
   setCurrentQuiz: (quiz: FetchedQuiz) => void;
   skipQuestion: () => void;
   setCurrentChoice: (choiceID: string) => void;
-  addAnsweredQuestionIDs: (questionID: string) => void;
+  addAnsweredQuestionIDs: (questionID: string, isCorrect: boolean) => void;
+  revisitUnansweredQuestions: () => void;
 };
 
 export const useQuizStore = create<QuizStore>((set) => ({
@@ -27,6 +33,9 @@ export const useQuizStore = create<QuizStore>((set) => ({
   quizzes: [],
   currentIndex: 0,
   currentQuiz: null,
+
+  originalQuestions: [],
+
   answeredQuestions: [],
 
   answeredQuestionsIDs: [],
@@ -62,7 +71,11 @@ export const useQuizStore = create<QuizStore>((set) => ({
   },
 
   setCurrentQuiz: (quiz: FetchedQuiz) => {
-    set({ currentQuiz: quiz, quizStatus: 'ready' });
+    set({
+      currentQuiz: quiz,
+      originalQuestions: quiz.questions, // Save the original questions
+      quizStatus: 'ready',
+    });
   },
 
   setCurrentChoice: (choiceID: string) => {
@@ -72,20 +85,60 @@ export const useQuizStore = create<QuizStore>((set) => ({
   skipQuestion: () => {
     set((state) => {
       if (state.currentQuiz) {
-        const nextQuestion =
-          state.currentIndex < state.currentQuiz.questions.length - 1
-            ? state.currentIndex + 1
-            : 0;
-        return { currentIndex: nextQuestion, currentChoiceID: null };
+        const isLastQuestion =
+          state.currentIndex === state.currentQuiz.questions.length - 1;
+
+        if (isLastQuestion) {
+          // Trigger revisit logic only if unanswered questions remain
+          state.revisitUnansweredQuestions();
+        } else {
+          // Increment to the next question
+          return {
+            currentIndex: state.currentIndex + 1,
+            currentChoiceID: null,
+          };
+        }
       }
       return state;
     });
   },
-  addAnsweredQuestionIDs: (questionID: string) => {
+
+  addAnsweredQuestionIDs: (questionID: string, isCorrect: boolean) => {
+    set((state) => ({
+      answeredQuestions: [
+        ...state.answeredQuestions,
+        { questionID, isCorrect },
+      ],
+    }));
+  },
+
+  revisitUnansweredQuestions: () => {
     set((state) => {
-      return {
-        answeredQuestionsIDs: [...state.answeredQuestionsIDs, questionID],
-      };
+      if (state.currentQuiz) {
+        // Filter out answered questions to get only unanswered ones
+        const unansweredQuestions = state.currentQuiz.questions.filter(
+          (question) =>
+            !state.answeredQuestions.some(
+              (answered) => answered.questionID === question.id
+            )
+        );
+
+        if (unansweredQuestions.length > 0) {
+          // Loop through only unanswered questions
+          return {
+            currentQuiz: {
+              ...state.currentQuiz,
+              questions: unansweredQuestions,
+            },
+            currentIndex: 0,
+            currentChoiceID: null,
+          };
+        } else {
+          // If no unanswered questions remain, simply return the state
+          return { currentIndex: 0, currentChoiceID: null };
+        }
+      }
+      return state;
     });
   },
 }));
