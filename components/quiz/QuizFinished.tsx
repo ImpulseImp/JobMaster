@@ -17,26 +17,25 @@ function QuizFinished() {
   );
 
   return (
-    <div className='bg-gradient-to-br from-gray-100 to-gray-200 p-6 rounded-xl shadow-xl max-w-xs sm:max-w-xl'>
+    <div className=' p-6 rounded-xl shadow-xl max-w-xs sm:max-w-xl dark:border dark:border-gray-200'>
       {/* Quiz Result Summary */}
       <div className='text-center mb-8'>
-        <h2 className='text-3xl font-extrabold text-gray-800'>Ваш результат</h2>
-        <p className='text-gray-600 mt-2 text-lg'>
-          Правильные ответы:{' '}
-          <span className='text-green-600'>{correctCount}</span>
+        <h2 className='text-3xl font-extrabold '>Ваш результат</h2>
+        <p className=' mt-2 text-lg'>
+          Правильные ответы: <span className=''>{correctCount}</span>/
+          {totalQuestions}
         </p>
-        <p className='text-gray-600 text-lg'>
-          Всего вопросов:{' '}
-          <span className='text-blue-600'>{totalQuestions}</span>
-        </p>
+        {/* <p className='text-gray-600 text-lg'>
+          Всего вопросов: <span className=''>{totalQuestions}</span>
+        </p> */}
       </div>
 
-      <p className='text-sm text-gray-600'>
+      <p className='text-sm '>
         Вопрос {currentIndex + 1}/{totalQuestions}
       </p>
       {/* Display Current Question */}
-      <div className='flex flex-col justify-center items-center bg-gray-100 min-h-[150px] sm:min-h-[130px] p-4 px-6 rounded-lg shadow-md'>
-        <h1 className='text-xl sm:text-2xl font-bold text-gray-800 w-full sm:text-center'>
+      <div className='flex flex-col justify-center items-center  min-h-[150px] sm:min-h-[130px] p-4 px-6 rounded-lg shadow-md'>
+        <h1 className='text-xl sm:text-2xl font-bold w-full sm:text-center'>
           {currentQuestion.question}
         </h1>
       </div>
@@ -120,7 +119,6 @@ function QuizFinished() {
           onClick={() => {
             startQuiz(); // Reset quiz to allow retaking it
           }}
-          className='transition bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-md'
         >
           Повторить экзамен
         </Button>

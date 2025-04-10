@@ -18,11 +18,9 @@ async function QuizPage({ params }: QuizPageProps) {
   });
   return (
     <QuizContainer>
-      <div className='text-center text-gray-800'>
+      <div className='text-center '>
         <h1 className='text-3xl font-extrabold'>{quiz?.title}</h1>
-        <p className='text-sm text-gray-500 mt-2'>
-          Подготовьтесь к проверке знаний!
-        </p>
+        <p className='text-sm  mt-2'>Подготовьтесь к проверке знаний!</p>
       </div>
       <div className='flex flex-col items-center mt-10'>
         {quiz && <QuizStart quiz={quiz} />}

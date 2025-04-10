@@ -6,7 +6,7 @@ function Landing() {
           Отслеживайте выполнение задач для достижения высокой точности и
           оперативного принятия решений.
         </h1>
-        <div className='bg-red-50 w-full h-svh '></div>
+        <div className='bg-red-50 dark:bg-red-900 w-full h-svh '></div>
       </div>
       <div className='mb-4'>
         <h1 className='text-3xl font-normal text-left sm:text-center mb-4'>

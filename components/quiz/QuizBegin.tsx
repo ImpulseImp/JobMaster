@@ -23,15 +23,15 @@ function QuizBegin() {
 
   return (
     <div className=''>
-      <p className='text-gray-700 text-sm'>
+      <p className=' text-sm'>
         Вопрос{' '}
         {originalQuestions.findIndex(
           (q) => q.id === questions[currentIndex].id
         ) + 1}
         /{originalQuestions.length}
       </p>
-      <div className='flex flex-col justify-center items-center bg-gray-100 min-h-[150px] sm:min-h-[130px] p-4 px-6 rounded-lg shadow-md'>
-        <h1 className='text-xl sm:text-2xl font-bold text-gray-800 w-full sm:text-center'>
+      <div className='flex flex-col justify-center items-center  min-h-[150px] sm:min-h-[130px] p-4 px-6 rounded-lg shadow-md dark:border dark:border-gray-200'>
+        <h1 className='text-xl sm:text-2xl font-bold  w-full sm:text-center'>
           {questions[currentIndex].question}
         </h1>
       </div>
@@ -56,8 +56,8 @@ function QuizBegin() {
                   ? ' bg-green-100 text-green-700 font-bold border border-green-400'
                   : currentChoiceID === option.id
                   ? 'bg-red-100 text-red-700 font-bold border border-red-400'
-                  : 'bg-gray-200 text-gray-800'
-                : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+                  : ' rounded-lg shadow-md dark:border dark:border-gray-200 '
+                : 'rounded-lg shadow-md dark:border dark:border-gray-200 hover:bg-gray-200 dark:hover:bg-gray-900'
             }`}
           >
             {option.choice}
@@ -75,19 +75,19 @@ function QuizBegin() {
             const isCurrent = question.id === questions[currentIndex].id;
 
             const spanClass = !answerStatus
-              ? 'bg-gray-300' // Unanswered - Gray
+              ? '' // Unanswered - Gray
               : answerStatus.isCorrect
               ? 'bg-green-500' // Correct - Green
               : 'bg-red-500'; // Incorrect - Red
 
             const borderClass = isCurrent
-              ? 'border-2 border-gray-500'
+              ? 'border-2 border-gray-500 '
               : 'border'; // Highlight border for the current question
 
             return (
               <span
                 key={idx}
-                className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-semibold ${spanClass} ${borderClass}`}
+                className={`w-8 h-8 rounded-full flex items-center justify-center  font-semibold ${spanClass} ${borderClass}`}
               >
                 {idx + 1}
               </span>

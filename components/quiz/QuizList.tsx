@@ -9,16 +9,16 @@ function QuizList() {
 
   if (quizStatus === 'loading') {
     return (
-      <div className='flex justify-center items-center h-60 bg-gray-100 rounded-lg shadow-md text-lg text-gray-600'>
+      <div className='flex justify-center items-center h-60  rounded-lg shadow-md text-lg '>
         Загрузка...
       </div>
     );
   }
 
   return (
-    <div className='flex flex-col space-y-6 bg-white shadow-lg rounded-xl p-6 border border-gray-200'>
+    <div className='flex flex-col space-y-6 shadow-lg rounded-xl p-6 border border-gray-200'>
       {quizzes.length === 0 && (
-        <div className='text-center text-gray-600 text-sm'>
+        <div className='text-center  text-sm'>
           Пожалуйста, выберите категорию, чтобы продолжить.
         </div>
       )}
