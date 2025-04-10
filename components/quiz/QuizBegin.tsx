@@ -26,8 +26,13 @@ function QuizBegin() {
     <div className=''>
       <div className=' flex flex-col justify-center items-center bg-gray-100 p-8 rounded-lg shadow-md'>
         <p className='text-gray-700 text-sm mb-2'>
-          Вопрос {currentIndex + 1}/{questions.length}
+          Вопрос{' '}
+          {originalQuestions.findIndex(
+            (q) => q.id === questions[currentIndex].id
+          ) + 1}
+          /{originalQuestions.length}
         </p>
+
         <h1 className='text-2xl font-bold text-gray-800 w-full'>
           {questions[currentIndex].question}
         </h1>
