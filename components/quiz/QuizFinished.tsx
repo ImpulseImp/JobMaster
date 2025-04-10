@@ -55,7 +55,7 @@ function QuizFinished() {
           } else if (isUserSelected) {
             optionClass += ' bg-red-100 text-red-700 font-bold border-red-400';
           } else {
-            optionClass += ' hover:bg-gray-50';
+            optionClass += ' ';
           }
 
           return (
