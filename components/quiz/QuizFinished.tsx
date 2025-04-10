@@ -1,12 +1,13 @@
 import { useQuizStore } from '@/store/store';
 import { Button } from '../ui/button';
+import Link from 'next/link';
 
 function QuizFinished() {
   const originalQuestions = useQuizStore((state) => state.originalQuestions);
   const answeredQuestions = useQuizStore((state) => state.answeredQuestions);
   const currentIndex = useQuizStore((state) => state.currentIndex);
   const setCurrentIndex = useQuizStore((state) => state.setCurrentIndex);
-
+  const startQuiz = useQuizStore((state) => state.startQuiz);
   const correctCount = answeredQuestions.filter((q) => q.isCorrect).length;
   const totalQuestions = originalQuestions.length;
 
@@ -110,6 +111,21 @@ function QuizFinished() {
           onClick={() => setCurrentIndex(currentIndex + 1)}
         >
           Вперед
+        </Button>
+      </div>
+
+      {/* Additional Buttons */}
+      <div className='flex flex-col sm:flex-row sm:justify-between mt-6 gap-4'>
+        <Button
+          onClick={() => {
+            startQuiz(); // Reset quiz to allow retaking it
+          }}
+          className='transition bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-md'
+        >
+          Повторить экзамен
+        </Button>
+        <Button asChild>
+          <Link href='/labor/quiz/'>Вернуться к экзаменам</Link>
         </Button>
       </div>
     </div>

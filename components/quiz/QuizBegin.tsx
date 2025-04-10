@@ -50,7 +50,7 @@ function QuizBegin() {
                 isCorrect
               ); // Store the user's answer and correctness
             }}
-            className={`w-full py-3 px-4 rounded-lg text-lg sm:text-lg font-semibold transition-colors duration-300 ${
+            className={`w-full py-3 px-4 rounded-lg text-lg sm:text-lg font-semibold  ${
               currentChoiceID
                 ? option.isCorrect
                   ? ' bg-green-100 text-green-700 font-bold border border-green-400'
