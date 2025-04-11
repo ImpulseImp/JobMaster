@@ -2,6 +2,7 @@ import { FetchedQuiz } from '@/utils/types';
 import { Quiz } from '@prisma/client';
 import axios from 'axios';
 import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
 
 type QuizStore = {
   quizzes: Quiz[];
@@ -20,8 +21,6 @@ type QuizStore = {
     isCorrect: boolean;
   }[];
 
-  answeredQuestionsIDs: string[];
-
   categorySelect: (quizID: string) => void;
   startQuiz: () => void;
   finishQuiz: () => void;
@@ -38,141 +37,149 @@ type QuizStore = {
   setCurrentIndex: (index: number) => void;
 };
 
-export const useQuizStore = create<QuizStore>((set) => ({
-  quizStatus: 'inactive',
-  quizzes: [],
-  currentIndex: 0,
-  currentQuiz: null,
+export const useQuizStore = create<QuizStore>()(
+  devtools((set) => ({
+    quizStatus: 'inactive',
+    quizzes: [],
+    currentIndex: 0,
+    currentQuiz: null,
 
-  originalQuestions: [],
+    originalQuestions: [],
+    answeredQuestions: [],
 
-  answeredQuestions: [],
-
-  answeredQuestionsIDs: [],
-  currentChoiceID: null,
-  currentCategoryId: '',
-  categorySelect: async (quizID: string) => {
-    set((state) => {
-      state.resetQuiz(); // Reset previous quiz state
-      return {
-        quizStatus: 'loading',
-        currentCategoryId: quizID,
-      };
-    });
-    try {
-      const response = await axios(`/api/quizzes?categoryId=${quizID}`);
-      set({
-        quizStatus: 'ready',
-        quizzes: response.data.quizzes,
+    currentChoiceID: null,
+    currentCategoryId: '',
+    categorySelect: async (quizID: string) => {
+      set((state) => {
+        state.resetQuiz(); // Reset previous quiz state
+        return {
+          quizStatus: 'loading',
+          currentCategoryId: quizID,
+        };
       });
-    } catch (error) {
-      console.error(error);
-    }
-  },
-
-  startQuiz: () => {
-    set({
-      quizStatus: 'active',
-      answeredQuestions: [], // Clear previous answers
-      currentIndex: 0, // Start from the first question
-      currentChoiceID: null,
-      quizzes: [],
-    });
-  },
-
-  resetQuiz: () => {
-    set({
-      currentIndex: 0,
-      currentChoiceID: null,
-      quizzes: [],
-      answeredQuestionsIDs: [],
-      currentCategoryId: '',
-      currentQuiz: null,
-      quizStatus: 'inactive',
-    });
-  },
-
-  setCurrentQuiz: (quiz: FetchedQuiz) => {
-    set({
-      currentQuiz: quiz,
-      originalQuestions: quiz.questions,
-      answeredQuestions: [], // Clear previous answers
-      currentIndex: 0, // Start from the first question
-      currentChoiceID: null, // Clear any selected choice
-      quizStatus: 'ready',
-    });
-  },
-
-  setCurrentChoice: (choiceID: string) => {
-    set({ currentChoiceID: choiceID });
-  },
-
-  skipQuestion: () => {
-    set((state) => {
-      if (state.currentQuiz) {
-        const isLastQuestion =
-          state.currentIndex === state.currentQuiz.questions.length - 1;
-
-        if (isLastQuestion) {
-          // Trigger revisit logic only if unanswered questions remain
-          state.revisitUnansweredQuestions();
-        } else {
-          // Increment to the next question
-          return {
-            currentIndex: state.currentIndex + 1,
-            currentChoiceID: null,
-          };
-        }
+      try {
+        const response = await axios(`/api/quizzes?categoryId=${quizID}`);
+        set({
+          quizStatus: 'ready',
+          quizzes: response.data.quizzes,
+        });
+      } catch (error) {
+        console.error(error);
       }
-      return state;
-    });
-  },
+    },
 
-  addAnsweredQuestionIDs: (
-    questionID: string,
-    optionID: string,
-    isCorrect: boolean
-  ) => {
-    set((state) => ({
-      answeredQuestions: [
-        ...state.answeredQuestions,
-        { questionID, optionID, isCorrect }, // Store optionID as well
-      ],
-    }));
-  },
-
-  revisitUnansweredQuestions: () => {
-    set((state) => {
-      if (state.currentQuiz) {
-        // Filter out answered questions to get only unanswered ones
-        const unansweredQuestions = state.currentQuiz.questions.filter(
-          (question) =>
-            !state.answeredQuestions.some(
-              (answered) => answered.questionID === question.id
-            )
-        );
-
-        if (unansweredQuestions.length > 0) {
-          // Loop through only unanswered questions
+    startQuiz: () => {
+      set((state) => {
+        if (state.currentQuiz) {
           return {
-            currentQuiz: {
-              ...state.currentQuiz,
-              questions: unansweredQuestions,
-            },
+            quizStatus: 'active',
+            answeredQuestions: [],
             currentIndex: 0,
             currentChoiceID: null,
+            currentQuiz: {
+              ...state.currentQuiz,
+              questions: state.originalQuestions,
+            },
           };
         } else {
-          // If no unanswered questions remain, simply return the state
-          return { currentIndex: 0, currentChoiceID: null };
+          return state;
         }
-      }
-      return state;
-    });
-  },
+      });
+    },
 
-  finishQuiz: () => {
-    set({ quizStatus: 'finished', currentIndex: 0 });
-  },
-  setCurrentIndex: (index: number) => set({ currentIndex: index }),
-}));
+    resetQuiz: () => {
+      set({
+        currentIndex: 0,
+        currentChoiceID: null,
+        quizzes: [],
+        currentCategoryId: '',
+        currentQuiz: null,
+        quizStatus: 'inactive',
+      });
+    },
+
+    setCurrentQuiz: (quiz: FetchedQuiz) => {
+      set({
+        currentQuiz: quiz,
+        originalQuestions: quiz.questions,
+        answeredQuestions: [], // Clear previous answers
+        currentIndex: 0, // Start from the first question
+        currentChoiceID: null, // Clear any selected choice
+        quizStatus: 'ready',
+      });
+    },
+
+    setCurrentChoice: (choiceID: string) => {
+      set({ currentChoiceID: choiceID });
+    },
+
+    skipQuestion: () => {
+      set((state) => {
+        if (state.currentQuiz) {
+          const isLastQuestion =
+            state.currentIndex === state.currentQuiz.questions.length - 1;
+
+          if (isLastQuestion) {
+            // Trigger revisit logic only if unanswered questions remain
+            state.revisitUnansweredQuestions();
+          } else {
+            // Increment to the next question
+            return {
+              currentIndex: state.currentIndex + 1,
+              currentChoiceID: null,
+            };
+          }
+        }
+        return state;
+      });
+    },
+
+    addAnsweredQuestionIDs: (
+      questionID: string,
+      optionID: string,
+      isCorrect: boolean
+    ) => {
+      set((state) => ({
+        answeredQuestions: [
+          ...state.answeredQuestions,
+          { questionID, optionID, isCorrect }, // Store optionID as well
+        ],
+      }));
+    },
+
+    revisitUnansweredQuestions: () => {
+      set((state) => {
+        if (state.currentQuiz) {
+          // Filter out answered questions to get only unanswered ones
+          const unansweredQuestions = state.currentQuiz.questions.filter(
+            (question) =>
+              !state.answeredQuestions.some(
+                (answered) => answered.questionID === question.id
+              )
+          );
+
+          if (unansweredQuestions.length > 0) {
+            // Loop through only unanswered questions
+            return {
+              currentQuiz: {
+                ...state.currentQuiz,
+                questions: unansweredQuestions,
+              },
+              currentIndex: 0,
+              currentChoiceID: null,
+            };
+          } else {
+            // If no unanswered questions remain, simply return the state
+            return { currentIndex: 0, currentChoiceID: null };
+          }
+        }
+        return state;
+      });
+    },
+
+    finishQuiz: () => {
+      set({ quizStatus: 'finished', currentIndex: 0 });
+    },
+    setCurrentIndex: (index: number) => set({ currentIndex: index }),
+  }))
+);
